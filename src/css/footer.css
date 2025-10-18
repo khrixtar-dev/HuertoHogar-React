@@ -1,0 +1,64 @@
+/* ===== FOOTER (Huerto Hogar React-Bootstrap) ===== */
+
+.custom-footer {
+  background-color: #5c493b; /* color original */
+  color: #fff;
+  padding: 1rem 0 0.2rem 0;
+  width: 100%;
+  margin-top: auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contenedor del contenido principal */
+.footer-content {
+  padding: 0 2rem;
+}
+
+/* Enlaces */
+.footer-links-left,
+.footer-links-right {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.footer-links-left a,
+.footer-links-right a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links-left a:hover,
+.footer-links-right a:hover {
+  color: #95a76f;
+}
+
+/* Logo */
+.footer-logo {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Línea inferior */
+.footer-bottom {
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 0.8rem;
+}
+
+/* ===== Responsividad ===== */
+
+@media (max-width: 768px) {
+  .footer-links-left,
+  .footer-links-right {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .footer-logo {
+    width: 90px;
+    height: 55px;
+  }
+}
