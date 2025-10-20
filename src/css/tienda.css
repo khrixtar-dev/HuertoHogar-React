@@ -1,0 +1,35 @@
+.product-card {
+  width: 14rem;
+  height: 20rem;
+}
+
+.product-card .card-img-top {
+  height: 11rem;
+  object-fit: contain;
+  width: 100%;
+  padding: 12px;
+}
+
+.product-card .card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.product-card .card-title {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.product-card .card-text {
+  font-weight: bold;
+  color: #198754;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.product-card .btn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
