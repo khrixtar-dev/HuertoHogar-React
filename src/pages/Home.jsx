@@ -1,11 +1,34 @@
 import Carousel from 'react-bootstrap/Carousel';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { PRODUCTOS, getProductoRandom } from '../../public/js/productos_catalogo';
 import '../css/home.css';
+
+function ProductCard({ producto, onVerProducto, onAgregarCarrito }) {
+  return (
+    <Card className="home-product-card">
+      <Card.Img variant="top" src={producto.imagen} alt={producto.nombre} />
+      <Card.Body>
+        <Card.Title>{producto.nombre}</Card.Title>
+        <Card.Text>
+          ${producto.precio.toLocaleString()} CLP/kg
+        </Card.Text>
+        <div className="btn-container">
+          <Button size="sm" variant="success" onClick={() => onVerProducto(producto.id)}>
+            Ver Producto
+          </Button>
+          <Button size="sm" variant="success" onClick={() => onAgregarCarrito(producto.id)}>
+            Añadir al Carro
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
+  );
+}
 
 function Home() {
   return (
-    <>
-
-      <div className="main-content">
+    <div className="w-100 overflow-hidden">
+      <div className="w-100">
         <Carousel>
           <Carousel.Item>
             <img
@@ -54,15 +77,25 @@ function Home() {
           </Carousel.Item>
         </Carousel>
       </div>
-      <div className="featured-container">
-        <h3>Productos Favoritos</h3>
-        
-      </div>
-      <br/>
-      <div className="about-container">
-        <h3>
-          Acerca de HuertoHogar
-        </h3>
+
+      <Container className="my-5">
+        <h3 className="text-center mb-4">Productos Favoritos</h3>
+        <Row>
+          {getProductoRandom(PRODUCTOS, 4).map(producto => (
+            <Col key={producto.id} xs={6} md={3} className="mb-4 d-flex justify-content-center">
+              <ProductCard 
+                producto={producto}
+                onVerProducto={(id) => console.log('Ver producto:', id)}
+                onAgregarCarrito={(id) => console.log('Agregar al carrito:', id)}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+
+      <Container className='text-center'>
+        <hr />
+        <h3>Acerca de HuertoHogar</h3>
         <p>
           En HuertoHogar, nos dedicamos a llevar la frescura del campo directamente a tu hogar.
           Con más de 6 años de experiencia, nos enorgullece ofrecer productos agrícolas de alta calidad,
@@ -73,11 +106,9 @@ function Home() {
           confianza para garantizar que cada producto que ofrecemos cumpla con los más altos estándares de calidad.
           Nos esforzamos por ser un referente en la industria agrícola, brindando a nuestros clientes
           una experiencia de compra excepcional y productos que reflejen el sabor auténtico del campo chileno.
-          
         </p>
-      </div>
-
-    </>
+      </Container>
+    </div>
   )
 }
 
