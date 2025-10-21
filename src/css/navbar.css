@@ -2,21 +2,64 @@ Nav {
   background-color: rgb(43, 110, 75);
   margin-top: 0;
   box-sizing: border-box;
+  padding: 0;
 }
 
 .navbar-brand {
-  margin-left: -1vw;
   color: white;
-  font-size:25px;
+  font-size: 25px;
+  margin-left: -11vw;
 }
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    margin-left: 2vw;
+  }
+}
+
+@media (max-width: 825px) {
+  .navbar-brand {
+    margin-left: 2vw;
+  }
+}
+
+@media (max-width: 1036px) {
+  .navbar-brand {
+    margin-left: 2vw;
+  }
+}
+
+@media (max-width: 1440px) {
+  .navbar-brand {
+    margin-left: 2vw;
+  }
+}
+
+
+
 .ms-auto {
   margin-right: -12vw;
   color: white;
 }
 
+@media (max-width: 1024px) {
+  .ms-auto {
+    margin-right: -1vw;
+    color: white;
+  }
+}
+@media (max-width: 1440px) {
+    .ms-auto {
+      margin-right: -1vw;
+      color: white;
+    }
+  }
+
+
 .dropdown-menu {
   background-color: rgb(49, 107, 74);
 }
+
 .dropdown-item {
   color: white;
 }
@@ -32,4 +75,3 @@ Nav {
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
-
