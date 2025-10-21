@@ -33,7 +33,7 @@ function Home() {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="/img/home_/img_carrusel1.jpg"
+              src="/img/home_/img_carrusel1.webp"
               alt="First slide"
             />
             <Carousel.Caption>
@@ -44,7 +44,7 @@ function Home() {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="/img/home_/img_carrusel2.jpg"
+              src="/img/home_/img_carrusel2.webp"
               alt="Second slide"
             />
             <Carousel.Caption>
@@ -56,7 +56,7 @@ function Home() {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="/img/home_/img_carrusel3.jpg"
+              src="/img/home_/img_carrusel3.webp"
               alt="Third slide"
             />
             <Carousel.Caption>
@@ -67,7 +67,7 @@ function Home() {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="/img/home_/img_carrusel4.jpg"
+              src="/img/home_/img_carrusel4.webp"
               alt="Fourth slide"
             />
             <Carousel.Caption>
@@ -79,11 +79,11 @@ function Home() {
       </div>
 
       <Container className="my-5">
-        <h3 className="text-center mb-4">Productos Favoritos</h3>
+        <h3 className="text-center text-white mb-4">Productos Favoritos</h3>
         <Row>
           {getProductoRandom(PRODUCTOS, 4).map(producto => (
             <Col key={producto.id} xs={6} md={3} className="mb-4 d-flex justify-content-center">
-              <ProductCard 
+              <ProductCard
                 producto={producto}
                 onVerProducto={(id) => console.log('Ver producto:', id)}
                 onAgregarCarrito={(id) => console.log('Agregar al carrito:', id)}
@@ -92,9 +92,9 @@ function Home() {
           ))}
         </Row>
       </Container>
+      
+      <div className='about-container'>
 
-      <Container className='text-center'>
-        <hr />
         <h3>Acerca de HuertoHogar</h3>
         <p>
           En HuertoHogar, nos dedicamos a llevar la frescura del campo directamente a tu hogar.
@@ -107,7 +107,7 @@ function Home() {
           Nos esforzamos por ser un referente en la industria agrícola, brindando a nuestros clientes
           una experiencia de compra excepcional y productos que reflejen el sabor auténtico del campo chileno.
         </p>
-      </Container>
+      </div>
     </div>
   )
 }
