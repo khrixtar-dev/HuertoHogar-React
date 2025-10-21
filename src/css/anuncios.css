@@ -6,7 +6,10 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   padding: 20px 20px 100px 20px;
-  background-color: #eeeeee;
+  /*background-color: #eeeeee;*/
+  background-image: url(/img/anuncios_/textura_diario.webp);
+  background-size: cover;
+  background-position: 50%;
   font-family: 'Times New Roman', serif;
   color: #2c2c2c;
 }
@@ -41,10 +44,10 @@ body {
 }
 
 .noticia {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  /*background: #fff;
+  border: 1px solid #ddd;*/
+  
+  padding: 1px;
   border-radius: 5px;
   break-inside: avoid;
 }

@@ -43,7 +43,7 @@ function Tienda() {
   return (
     <>
     <Container>
-      <h2 className="my-4">Tienda</h2>
+      <h2 className="my-4 text-white">Catalogo</h2>
 
       <Row className="mb-4">
         <Col md={4}>

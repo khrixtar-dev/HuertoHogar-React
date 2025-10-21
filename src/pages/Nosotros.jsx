@@ -4,7 +4,7 @@ function Nosotros() {
   return (
     <main className="nosotros-main">
       <div className="hero-container">
-        <img src="/img/nosotros_/Fondo.jpg" className="hero-image" alt="Campo HuertoHogar" />
+        <img src="/img/nosotros_/Fondo.webp" className="hero-image" alt="Campo HuertoHogar" />
         <div className="overlay"></div>
         <div className="hero-text">
           <h1>Bienvenido a HuertoHogar</h1>

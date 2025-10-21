@@ -1,6 +1,9 @@
+
 .product-card {
   width: 14rem;
   height: 20rem;
+  background-color: rgba(255, 255, 255, 0.74);
+  text-align: center;
 }
 
 .product-card .card-img-top {
@@ -13,7 +16,7 @@
 .product-card .card-body {
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 0.5rem;  
 }
 
 .product-card .card-title {
