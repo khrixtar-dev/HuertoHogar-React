@@ -1,0 +1,48 @@
+.login-container {
+  margin: 0;
+  padding: 0;
+}
+
+/* MITAD IZQUIERDA */
+.left-panel {
+  background: url("/img/nosotros_/Fondo.jpg") no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/*
+Esta es la opcion con la imagen oscurecida !!!
+*/
+
+/*
+.left-panel {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url("/img/nosotros_/Fondo.jpg") no-repeat center center;
+  background-size: cover;
+  color: #fff;
+}
+*/
+
+/* MITAD DERECHA */
+.right-panel {
+  background-color: #f8f9fa;
+}
+
+/* FORMULARIO */
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+}
+
+.login-box a {
+  text-decoration: none;
+}
+
+.login-box a:hover {
+  text-decoration: underline;
+}

@@ -1,28 +1,30 @@
-import './App.css'
-import Navbar from './pages/NavBar'
-import Home from './pages/Home'
-import Nosotros from './pages/Nosotros'
-import Footer from './pages/Footer'
-import Anuncios from './pages/Anuncios'
-import Contacto from './pages/Contacto'
-import Tienda from './pages/Tienda'
-import { Route,Routes,BrowserRouter as Router } from 'react-router-dom'
+import "./App.css";
+import Navbar from "./pages/NavBar";
+import Home from "./pages/Home";
+import Nosotros from "./pages/Nosotros";
+import Footer from "./pages/Footer";
+import Anuncios from "./pages/Anuncios";
+import Contacto from "./pages/Contacto";
+import Tienda from "./pages/Tienda";
+import LoginCliente from "./pages/LoginClientes";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
-function App() {  
+function App() {
   return (
     <Router>
-      <Navbar/>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/nosotros' element={<Nosotros/>}/>
-          <Route path='/anuncios' element={<Anuncios/>}/>
-          <Route path='/contacto' element={<Contacto/>}/>
-          <Route path='/tienda' element={<Tienda/>}/>
-        </Routes>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/anuncios" element={<Anuncios />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="/tienda" element={<Tienda />} />
+        <Route path="/login_cliente" element={<LoginCliente />} />
+      </Routes>
 
-      <Footer/>
+      <Footer />
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
