@@ -46,20 +46,19 @@ export function getProductosByCategoria(categoria) {
   return productos;
 }
 
+export const CATEGORIAS = [
+  "fruta organica",
+  "verdura organica", 
+  "producto organico",
+  "productos lacteos"
+];
+
 export function getCategorias() {
-  const categorias = [];
-  for (let i = 0; i < PRODUCTOS.length; i++) {
-    const categoria = PRODUCTOS[i].categoria;
-    let existe = false;
-    for (let j = 0; j < categorias.length; j++) {
-      if (categorias[j] === categoria) {
-        existe = true;
-        break;
-      }
-    }
-    if (!existe) {
-      categorias.push(categoria);
-    }
-  }
-  return categorias;
+  return CATEGORIAS;
+}
+
+export function findProductIdByName(name) {
+  if (!name) return null;
+  const prod = PRODUCTOS.find(p => p.nombre.toLowerCase().trim() === name.toLowerCase().trim());
+  return prod ? prod.id : null;
 }
