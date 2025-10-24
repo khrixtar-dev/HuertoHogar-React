@@ -4,20 +4,20 @@
   overflow: hidden;
 }
 
-/* Lado izquierdo: blanco limpio */
-.login-left-cliente {
+/* Lado derecho: blanco limpio */
+.login-right-admin {
   background-color: #f6f5f2;
 }
 
-/* Lado derecho: degradado natural Huerto Hogar */
-.login-right-cliente {
+/* Lado izquierdo: degradado natural Huerto Hogar */
+.login-left-admin {
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url("/img/nosotros_/Fondo.jpg") no-repeat center center;
+    url("/img/admin_/bg_login.jpg") no-repeat center center;
   background-size: cover;
   color: #fff;
 }
 
-/* Lado derecho: degradado natural Huerto Hogar
+/* Lado izquierdo: degradado natural Huerto Hogar
 
 
 .login-right {
@@ -41,11 +41,11 @@
 }
 
 /* Alineación del texto */
-.login-right-cliente h3 {
+.login-left-admin h3 {
   font-size: 1.8rem;
 }
 
-.login-right-cliente p {
+.login-left-admin p {
   font-size: 1rem;
   max-width: 400px;
 }

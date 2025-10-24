@@ -1,15 +1,24 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import "../css/login-clientes.css";
+import "../css/login-admin.css";
 
-export default function LoginCliente() {
+export default function LoginAdmin() {
   return (
     <Container fluid className="login-fullscreen p-0">
       <Row className="g-0 vh-100">
         {/* MITAD IZQUIERDA */}
         <Col
           md={6}
-          className="login-left-cliente d-flex flex-column justify-content-center align-items-center text-center p-5"
+          className="login-left-admin d-flex flex-column justify-content-center align-items-center text-center p-5"
+        >
+          <h3 className="fw-bold mb-3">Más que una comunidad</h3>
+          <p className="px-5">Bienvenido Administrador 🌿</p>
+        </Col>
+
+        {/* MITAD DERECHA */}
+        <Col
+          md={6}
+          className="login-right-admin d-flex flex-column justify-content-center align-items-center text-center p-5"
         >
           <div className="logo-box mb-4 d-flex align-items-center justify-content-center">
             <img
@@ -49,18 +58,6 @@ export default function LoginCliente() {
               </a>
             </p>
           </Form>
-        </Col>
-
-        {/* MITAD DERECHA */}
-        <Col
-          md={6}
-          className="login-right-cliente d-flex flex-column justify-content-center align-items-center text-center p-5"
-        >
-          <h3 className="fw-bold mb-3">Más que una comunidad</h3>
-          <p className="px-5">
-            Únete a Huerto Hogar y aprende a cultivar, cuidar y disfrutar de tu
-            propio huerto. 🌿
-          </p>
         </Col>
       </Row>
     </Container>
