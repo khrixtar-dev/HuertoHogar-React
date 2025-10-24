@@ -1,6 +1,9 @@
+import { useState, useMemo } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { PRODUCTOS, getProductoRandom } from '../../public/js/productos_catalogo';
+import { agregarAlCarrito } from '../../public/js/carrito';
+import ProductModal from './ProductModal';
 import '../css/home.css';
 
 function ProductCard({ producto, onVerProducto, onAgregarCarrito }) {
@@ -8,15 +11,23 @@ function ProductCard({ producto, onVerProducto, onAgregarCarrito }) {
     <Card className="home-product-card">
       <Card.Img variant="top" src={producto.imagen} alt={producto.nombre} />
       <Card.Body>
-        <Card.Title>{producto.nombre}</Card.Title>
+        <Card.Title>
+          {producto.nombre}
+        </Card.Title>
         <Card.Text>
-          ${producto.precio.toLocaleString()} CLP/kg
+          ${
+            producto.precio.toLocaleString()
+          } CLP/kg
         </Card.Text>
         <div className="btn-container">
-          <Button size="sm" variant="success" onClick={() => onVerProducto(producto.id)}>
+          <Button className="btn-ver-producto" size="sm" variant="success" onClick={
+            () => onVerProducto(producto.id)
+          }>
             Ver Producto
           </Button>
-          <Button size="sm" variant="success" onClick={() => onAgregarCarrito(producto.id)}>
+          <Button className="btn-agregar" size="sm" variant="success" onClick={
+            () => onAgregarCarrito(producto.id)
+          }>
             Añadir al Carro
           </Button>
         </div>
@@ -26,6 +37,43 @@ function ProductCard({ producto, onVerProducto, onAgregarCarrito }) {
 }
 
 function Home() {
+  // Estados para controlar el modal
+  const [showModal, setShowModal] = useState(
+    false
+  );
+  const [productoSeleccionado, setProductoSeleccionado] = useState(
+    null
+  );
+
+  // Productos fijos que no cambian en cada render
+  const productosAleatorios = useMemo(
+    () => getProductoRandom(PRODUCTOS, 4), 
+    []
+  );
+
+  // Función para abrir el modal con el producto seleccionado
+  const handleVerProducto = (id) => {
+    const producto = PRODUCTOS.find(
+      p => p.id === id
+    );
+    setProductoSeleccionado(producto);
+    setShowModal(true);
+  };
+
+  // Función para cerrar el modal
+  const handleCerrarModal = () => {
+    setShowModal(false);
+    setProductoSeleccionado(null);
+  };
+
+  const handleAgregarCarrito = (id) => {
+    agregarAlCarrito(id);
+    console.log(
+      'Producto agregado al carrito:', 
+      id
+    );
+  };
+
   return (
     <div className="w-100 overflow-hidden">
       <div className="w-100">
@@ -79,23 +127,33 @@ function Home() {
       </div>
 
       <Container className="my-5">
-        <h3 className="text-center text-white mb-4">Productos Favoritos</h3>
+        <h3 className="text-center text-white mb-4">
+          Productos Favoritos
+        </h3>
         <Row>
-          {getProductoRandom(PRODUCTOS, 4).map(producto => (
-            <Col key={producto.id} xs={6} md={3} className="mb-4 d-flex justify-content-center">
-              <ProductCard
-                producto={producto}
-                onVerProducto={(id) => console.log('Ver producto:', id)}
-                onAgregarCarrito={(id) => console.log('Agregar al carrito:', id)}
-              />
-            </Col>
-          ))}
+          {productosAleatorios.map(
+            producto => (
+              <Col key={
+                producto.id
+              } xs={6} md={3} className="mb-4 d-flex justify-content-center">
+                <ProductCard
+                  producto={producto}
+                  onVerProducto={handleVerProducto}
+                  onAgregarCarrito={handleAgregarCarrito}
+                />
+              </Col>
+            )
+          )}
         </Row>
       </Container>
       
-      <div className='about-container'>
+      <div className={
+        'about-container'
+      }>
 
-        <h3>Acerca de HuertoHogar</h3>
+        <h3>
+          Acerca de HuertoHogar
+        </h3>
         <p>
           En HuertoHogar, nos dedicamos a llevar la frescura del campo directamente a tu hogar.
           Con más de 6 años de experiencia, nos enorgullece ofrecer productos agrícolas de alta calidad,
@@ -108,6 +166,14 @@ function Home() {
           una experiencia de compra excepcional y productos que reflejen el sabor auténtico del campo chileno.
         </p>
       </div>
+      
+      {/* Modal para mostrar detalles del producto */}
+      <ProductModal
+        show={showModal}
+        onHide={handleCerrarModal}
+        producto={productoSeleccionado}
+        onAgregarCarrito={handleAgregarCarrito}
+      />
     </div>
   )
 }

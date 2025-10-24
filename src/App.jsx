@@ -6,6 +6,7 @@ import Footer from './pages/Footer'
 import Anuncios from './pages/Anuncios'
 import Contacto from './pages/Contacto'
 import Tienda from './pages/Tienda'
+import Carrito from './pages/Carrito'
 import { Route,Routes,BrowserRouter as Router } from 'react-router-dom'
 
 function App() {  
@@ -18,8 +19,8 @@ function App() {
           <Route path='/anuncios' element={<Anuncios/>}/>
           <Route path='/contacto' element={<Contacto/>}/>
           <Route path='/tienda' element={<Tienda/>}/>
+          <Route path='/carrito' element={<Carrito/>}/>
         </Routes>
-
       <Footer/>
     </Router>
   )
