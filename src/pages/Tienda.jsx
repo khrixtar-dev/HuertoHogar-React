@@ -89,13 +89,13 @@ function Tienda() {
   return (
     <>
       <Container>
-        <h2 className="my-4 text-white">
+        <h2 className="my-4 tienda-title">
           Catalogo
         </h2>
 
         <Row className="mb-4">
           <Col md={4}>
-            <Form.Select
+            <Form.Select className='form-select'
               value={
                 filtroCategoria
               }

@@ -48,15 +48,7 @@ export default function LoginAdmin() {
               INGRESAR
             </Button>
 
-            <a href="#" className="small text-success d-block mb-2">
-              ¿Olvidaste tu contraseña?
-            </a>
-            <p className="small">
-              ¿No tienes una cuenta?{" "}
-              <a href="#" className="text-success fw-semibold">
-                Regístrate
-              </a>
-            </p>
+            
           </Form>
         </Col>
       </Row>

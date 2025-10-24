@@ -30,7 +30,7 @@ function Footer() {
             <Col className="footer-links-right pb-3">
               <Link to="/contacto">Contacto</Link>
               <Link to="/anuncios">Anuncios</Link>
-              <Link to="/login">Cuenta</Link>
+              <Link to="/login_cliente">Cuenta</Link>
             </Col>
           </Row>
         </Container>
