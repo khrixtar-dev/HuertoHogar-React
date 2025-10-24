@@ -1,0 +1,38 @@
+/* Fondo completo con imagen */
+.registro-page {
+  background: url("/img/registro/registro.jpg") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+/* Capa oscura semitransparente para contraste */
+.registro-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
+/* Tarjeta del formulario */
+.registro-card {
+  background-color: #f6f5f2;
+  border: none;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Botón verde Huerto Hogar */
+.btn-green {
+  background-color: #65b968;
+  border: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.btn-green:hover {
+  background-color: #4d944f;
+}

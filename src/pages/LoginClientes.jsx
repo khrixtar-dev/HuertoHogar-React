@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "../css/login-clientes.css";
 
 export default function LoginCliente() {
@@ -44,9 +45,9 @@ export default function LoginCliente() {
             </a>
             <p className="small">
               ¿No tienes una cuenta?{" "}
-              <a href="#" className="text-success fw-semibold">
+              <Link to="/registro" className="text-success fw-semibold">
                 Regístrate
-              </a>
+              </Link>
             </p>
           </Form>
         </Col>
