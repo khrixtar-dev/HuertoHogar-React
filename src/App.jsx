@@ -7,9 +7,12 @@ import Anuncios from './pages/Anuncios'
 import Contacto from './pages/Contacto'
 import Tienda from './pages/Tienda'
 import Carrito from './pages/Carrito'
+import LoginCliente from "./pages/LoginClientes";
+import LoginAdmin from "./pages/LoginAdmin";
+import Registro from "./pages/Registro";
 import { Route,Routes,BrowserRouter as Router } from 'react-router-dom'
 
-function App() {  
+function App() {
   return (
     <Router>
       <Navbar/>
@@ -20,10 +23,13 @@ function App() {
           <Route path='/contacto' element={<Contacto/>}/>
           <Route path='/tienda' element={<Tienda/>}/>
           <Route path='/carrito' element={<Carrito/>}/>
+          <Route path="/login_cliente" element={<LoginCliente />} />
+          <Route path="/login_admin" element={<LoginAdmin />} />
+          <Route path="/registro" element={<Registro />} />
         </Routes>
       <Footer/>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

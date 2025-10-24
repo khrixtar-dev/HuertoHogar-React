@@ -1,0 +1,63 @@
+/* Pantalla completa */
+.login-fullscreen {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Lado derecho: blanco limpio */
+.login-right-admin {
+  background-color: #f6f5f2;
+}
+
+/* Lado izquierdo: degradado natural Huerto Hogar */
+.login-left-admin {
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("/img/admin_/bg_login.jpg") no-repeat center center;
+  background-size: cover;
+  color: #fff;
+}
+
+/* Lado izquierdo: degradado natural Huerto Hogar
+
+
+.login-right {
+  background: linear-gradient(135deg, #a8e6cf 0%, #65b968 100%);
+  color: #fff;
+}
+
+*/
+
+/* Botón estilo Huerto Hogar */
+.btn-green {
+  background-color: #65b968;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-green:hover {
+  background-color: #4d944f;
+}
+
+/* Alineación del texto */
+.login-left-admin h3 {
+  font-size: 1.8rem;
+}
+
+.login-left-admin p {
+  font-size: 1rem;
+  max-width: 400px;
+}
+
+.logo-box {
+  background-color: #198754; /* verde claro */
+  border-radius: 12px;
+  padding: 1rem;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
