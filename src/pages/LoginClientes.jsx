@@ -1,24 +1,91 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { iniciarSesion } from "../../public/js/persistenciaLogin";
+import Swal from "sweetalert2";
+
+import {
+  validarLogin,
+  validarPermisos,
+} from "../../public/js/validacionesLogin";
+import { usuarios } from "../../public/js/usuarios";
+
 import "../css/login-clientes.css";
 
 export default function LoginCliente() {
-  const [correo, setCorreo] = useState('');
-  const [contraseña, setContraseña] = useState('');
-  const [error, setError] = useState('');
+  const [correo, setCorreo] = useState("");
+  const [contraseña, setContraseña] = useState("");
+  const navigate = useNavigate();
 
   const submitCredenciales = (e) => {
     e.preventDefault();
-    const resultado = iniciarSesion(correo, contraseña);
-    
-    if (resultado.success) {
-      window.dispatchEvent(new Event('sesionActualizada'));
-      window.location.href = '/';
-    } else {
-      setError('Credenciales incorrectas');
+
+    // Validar formato
+    const errores = validarLogin(correo, contraseña);
+    if (errores.length > 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Errores de validación",
+        html: errores.map((e) => `• ${e}`).join("<br>"),
+        toast: true,
+        position: "bottom-center",
+        timer: 3500,
+        showConfirmButton: false,
+      });
+      return;
     }
+
+    // Buscar usuario
+    const usuario = usuarios.find(
+      (u) => u.correo === correo && u.contraseña === contraseña
+    );
+
+    // Validar permisos (tipoLogin = cliente)
+    const permisoError = validarPermisos(usuario, "cliente");
+    if (permisoError) {
+      Swal.fire({
+        icon: "warning",
+        title: "Acceso restringido",
+        text: permisoError,
+        toast: true,
+        position: "bottom-center",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+      return;
+    }
+
+    if (!usuario) {
+      Swal.fire({
+        icon: "error",
+        title: "Credenciales incorrectas",
+        text: "Verifica tu correo o contraseña.",
+        toast: true,
+        position: "bottom-center",
+        timer: 2500,
+        showConfirmButton: false,
+      });
+      return;
+    }
+
+    // Guardar sesión
+    localStorage.setItem("cuentaIniciada", "true");
+    localStorage.setItem("usuarioActual", JSON.stringify(usuario));
+
+    Swal.fire({
+      icon: "success",
+      title: `¡Bienvenido ${usuario.nombre}!`,
+      text: "Inicio de sesión exitoso",
+      toast: true,
+      position: "bottom-center",
+      timer: 1800,
+      showConfirmButton: false,
+    });
+
+    setTimeout(() => {
+      navigate("/");
+      window.dispatchEvent(new Event("sesionActualizada"));
+    }, 1800);
   };
 
   return (
@@ -40,9 +107,10 @@ export default function LoginCliente() {
           <h2 className="fw-bold text-success mb-2">Huerto Hogar</h2>
           <p className="text-muted mb-4">Inicia sesión en tu cuenta</p>
 
-          <Form style={{ width: "80%", maxWidth: "400px" }} onSubmit={submitCredenciales}>
-            {error && <Alert variant="danger">{error}</Alert>}
-            
+          <Form
+            style={{ width: "80%", maxWidth: "400px" }}
+            onSubmit={submitCredenciales}
+          >
             <Form.Group className="mb-3" controlId="email">
               <Form.Control
                 type="email"
@@ -54,12 +122,12 @@ export default function LoginCliente() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
-              <Form.Control 
-                type="password" 
-                placeholder="Contraseña" 
+              <Form.Control
+                type="password"
+                placeholder="Contraseña"
                 value={contraseña}
                 onChange={(e) => setContraseña(e.target.value)}
-                required 
+                required
               />
             </Form.Group>
 
