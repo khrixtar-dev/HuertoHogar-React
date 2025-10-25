@@ -52,7 +52,7 @@ function Home() {
   );
 
   // Función para abrir el modal con el producto seleccionado
-  const handleVerProducto = (id) => {
+  const verProductoModal = (id) => {
     const producto = PRODUCTOS.find(
       p => p.id === id
     );
@@ -61,12 +61,12 @@ function Home() {
   };
 
   // Función para cerrar el modal
-  const handleCerrarModal = () => {
+  const cerrarModal = () => {
     setShowModal(false);
     setProductoSeleccionado(null);
   };
 
-  const handleAgregarCarrito = (id) => {
+  const agregarCarritoModal = (id) => {
     agregarAlCarrito(id);
     console.log(
       'Producto agregado al carrito:', 
@@ -128,7 +128,7 @@ function Home() {
 
       <Container className="my-5">
         <h3 className="text-center text-white mb-4">
-          Productos Favoritos
+          Productos Recomendados
         </h3>
         <Row>
           {productosAleatorios.map(
@@ -138,8 +138,8 @@ function Home() {
               } xs={6} md={3} className="mb-4 d-flex justify-content-center">
                 <ProductCard
                   producto={producto}
-                  onVerProducto={handleVerProducto}
-                  onAgregarCarrito={handleAgregarCarrito}
+                  onVerProducto={verProductoModal}
+                  onAgregarCarrito={agregarCarritoModal}
                 />
               </Col>
             )
@@ -170,9 +170,9 @@ function Home() {
       {/* Modal para mostrar detalles del producto */}
       <ProductModal
         show={showModal}
-        onHide={handleCerrarModal}
+        onHide={cerrarModal}
         producto={productoSeleccionado}
-        onAgregarCarrito={handleAgregarCarrito}
+        onAgregarCarrito={agregarCarritoModal}
       />
     </div>
   )
