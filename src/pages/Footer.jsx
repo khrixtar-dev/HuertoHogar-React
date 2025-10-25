@@ -16,13 +16,14 @@ function Footer() {
             </Col>
 
             {/* Centro (Logo) */}
-            <Col className="footer-center mb-3 ">
-              <Image
+            <Col as={Link} to="/" className="footer-center mb-3 ">
+              <Image 
                 src="/img/navbar_footer_/LogoHuertoHogar.png"
                 alt="LogoHuertoHogar"
                 className="footer-logo"
                 style={{ width: "110px", height: "70px" }}
                 fluid
+                
               />
             </Col>
 

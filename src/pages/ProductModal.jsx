@@ -10,7 +10,6 @@ function ProductModal({ show, onHide, producto, onAgregarCarrito }) {
 
   // AGREGA AL CARRITO SIN CERRAR EL MODAL
   const modalAgregarCarrito = () => {
-    agregarAlCarrito(producto.id);
     onAgregarCarrito(producto.id);
   };
 

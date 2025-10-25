@@ -2,7 +2,6 @@ Nav {
   background-color: rgb(43, 110, 75);
   margin-top: 0;
   box-sizing: border-box;
-  padding: 0;
 }
 
 .navbar-brand {
@@ -40,20 +39,31 @@ Nav {
 .ms-auto {
   margin-right: -12vw;
   color: white;
+  
 }
 
 @media (max-width: 1024px) {
   .ms-auto {
     margin-right: -1vw;
     color: white;
+
+  }
+
+  .ms-auto .nav-link {
+    padding-right: 20px !important;
   }
 }
+
 @media (max-width: 1440px) {
-    .ms-auto {
-      margin-right: -1vw;
-      color: white;
-    }
+  .ms-auto {
+    margin-right: -1vw;
+    color: white;
   }
+
+  .ms-auto .nav-link {
+    padding-right: 20px !important;
+  }
+}
 
 
 .dropdown-menu {
@@ -64,8 +74,10 @@ Nav {
   color: white;
 }
 
-.navbar-nav .nav-link {
+.ms-auto .nav-link {
   color: white !important;
+  padding-right: 20px !important;
+
 }
 
 .navbar-toggler {
