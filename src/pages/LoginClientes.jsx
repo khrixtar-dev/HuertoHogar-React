@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -20,7 +20,7 @@ export default function LoginCliente() {
   const submitCredenciales = (e) => {
     e.preventDefault();
 
-    // Validar formato
+    // ✅ 1. Validar formato del correo y contraseña
     const errores = validarLogin(correo, contraseña);
     if (errores.length > 0) {
       Swal.fire({
@@ -35,12 +35,26 @@ export default function LoginCliente() {
       return;
     }
 
-    // Buscar usuario
+    // ✅ 2. Buscar usuario en la lista
     const usuario = usuarios.find(
       (u) => u.correo === correo && u.contraseña === contraseña
     );
 
-    // Validar permisos (tipoLogin = cliente)
+    // Si no se encontró usuario
+    if (!usuario) {
+      Swal.fire({
+        icon: "error",
+        title: "Credenciales incorrectas",
+        text: "El correo o la contraseña no coinciden con ningún usuario registrado.",
+        toast: true,
+        position: "bottom-center",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+      return;
+    }
+
+    // ✅ 3. Validar permisos (solo clientes pueden acceder aquí)
     const permisoError = validarPermisos(usuario, "cliente");
     if (permisoError) {
       Swal.fire({
@@ -55,26 +69,14 @@ export default function LoginCliente() {
       return;
     }
 
-    if (!usuario) {
-      Swal.fire({
-        icon: "error",
-        title: "Credenciales incorrectas",
-        text: "Verifica tu correo o contraseña.",
-        toast: true,
-        position: "bottom-center",
-        timer: 2500,
-        showConfirmButton: false,
-      });
-      return;
-    }
-
-    // Guardar sesión
+    // ✅ 4. Guardar sesión en localStorage
     localStorage.setItem("cuentaIniciada", "true");
     localStorage.setItem("usuarioActual", JSON.stringify(usuario));
 
+    // ✅ 5. Mostrar mensaje de éxito
     Swal.fire({
       icon: "success",
-      title: `¡Bienvenido ${usuario.nombre}!`,
+      title: `¡Bienvenido, ${usuario.nombre}!`,
       text: "Inicio de sesión exitoso",
       toast: true,
       position: "bottom-center",
@@ -82,6 +84,7 @@ export default function LoginCliente() {
       showConfirmButton: false,
     });
 
+    // ✅ 6. Redirigir y actualizar navbar al finalizar la animación
     setTimeout(() => {
       navigate("/");
       window.dispatchEvent(new Event("sesionActualizada"));
@@ -155,7 +158,7 @@ export default function LoginCliente() {
           <h3 className="fw-bold mb-3">Más que una comunidad</h3>
           <p className="px-5">
             Únete a Huerto Hogar y aprende a cultivar, cuidar y disfrutar de tu
-            propio huerto. 🌿
+            propio huerto 🌿
           </p>
         </Col>
       </Row>

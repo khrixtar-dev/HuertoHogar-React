@@ -18,7 +18,7 @@ export default function LoginAdmin() {
   const submitCredenciales = (e) => {
     e.preventDefault();
 
-    // 🔹 Paso 1: Validar formato (correo / contraseña)
+    // ✅ 1. Validar formato (correo / contraseña)
     const errores = validarLogin(correo, contraseña);
     if (errores.length > 0) {
       Swal.fire({
@@ -33,12 +33,26 @@ export default function LoginAdmin() {
       return;
     }
 
-    // 🔹 Paso 2: Buscar usuario
+    // ✅ 2. Buscar usuario
     const usuario = usuarios.find(
       (u) => u.correo === correo && u.contraseña === contraseña
     );
 
-    // 🔹 Paso 3: Validar permisos (solo admins)
+    // ✅ 3. Validar existencia del usuario antes de permisos
+    if (!usuario) {
+      Swal.fire({
+        icon: "error",
+        title: "Credenciales incorrectas",
+        text: "El correo o la contraseña no coinciden con ningún administrador registrado.",
+        toast: true,
+        position: "bottom-center",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+      return;
+    }
+
+    // ✅ 4. Validar permisos (solo administradores pueden ingresar)
     const permisoError = validarPermisos(usuario, "admin");
     if (permisoError) {
       Swal.fire({
@@ -53,24 +67,11 @@ export default function LoginAdmin() {
       return;
     }
 
-    // 🔹 Paso 4: Si no existe usuario válido
-    if (!usuario) {
-      Swal.fire({
-        icon: "error",
-        title: "Credenciales incorrectas",
-        text: "Verifica tu correo o contraseña.",
-        toast: true,
-        position: "bottom-center",
-        timer: 2500,
-        showConfirmButton: false,
-      });
-      return;
-    }
-
-    // 🔹 Paso 5: Guardar sesión y redirigir
+    // ✅ 5. Guardar sesión en localStorage
     localStorage.setItem("cuentaIniciada", "true");
     localStorage.setItem("usuarioActual", JSON.stringify(usuario));
 
+    // ✅ 6. Mensaje de éxito y redirección
     Swal.fire({
       icon: "success",
       title: `Bienvenido, ${usuario.nombre}!`,
@@ -81,7 +82,6 @@ export default function LoginAdmin() {
       showConfirmButton: false,
     });
 
-    // 🔹 Redirigir al dashboard admin
     setTimeout(() => {
       navigate("/admin");
       window.dispatchEvent(new Event("sesionActualizada"));
