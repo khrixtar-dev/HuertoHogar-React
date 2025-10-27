@@ -90,3 +90,8 @@
     margin-bottom: 7rem;
   }
 }
+@media (height:765px){
+  .map-container{
+    margin-bottom: 19rem;
+  }
+}
