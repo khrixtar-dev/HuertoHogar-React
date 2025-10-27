@@ -1,23 +1,91 @@
 import { useState } from "react";
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
-import { iniciarSesion } from "../../public/js/persistenciaLogin";
+import { useNavigate } from "react-router-dom";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
+
+import {
+  validarLogin,
+  validarPermisos,
+} from "../../public/js/validacionesLogin";
+import { usuarios } from "../../public/js/usuarios";
 import "../css/login-admin.css";
 
 export default function LoginAdmin() {
-  const [correo, setCorreo] = useState('');
-  const [contraseña, setContraseña] = useState('');
-  const [error, setError] = useState('');
+  const [correo, setCorreo] = useState("");
+  const [contraseña, setContraseña] = useState("");
+  const navigate = useNavigate();
 
   const submitCredenciales = (e) => {
     e.preventDefault();
-    const resultado = iniciarSesion(correo, contraseña);
-    
-    if (resultado.success && resultado.usuario.admin) {
-      window.dispatchEvent(new Event('sesionActualizada'));
-      window.location.href = '/admin';
-    } else {
-      setError('Esta cuenta no pertenece a un administrador');
+
+    // ✅ 1. Validar formato (correo / contraseña)
+    const errores = validarLogin(correo, contraseña);
+    if (errores.length > 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Errores de validación",
+        html: errores.map((e) => `• ${e}`).join("<br>"),
+        toast: true,
+        position: "bottom-center",
+        timer: 3500,
+        showConfirmButton: false,
+      });
+      return;
     }
+
+    // ✅ 2. Buscar usuario
+    const usuario = usuarios.find(
+      (u) => u.correo === correo && u.contraseña === contraseña
+    );
+
+    // ✅ 3. Validar existencia del usuario antes de permisos
+    if (!usuario) {
+      Swal.fire({
+        icon: "error",
+        title: "Credenciales incorrectas",
+        text: "El correo o la contraseña no coinciden con ningún administrador registrado.",
+        toast: true,
+        position: "bottom-center",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+      return;
+    }
+
+    // ✅ 4. Validar permisos (solo administradores pueden ingresar)
+    const permisoError = validarPermisos(usuario, "admin");
+    if (permisoError) {
+      Swal.fire({
+        icon: "warning",
+        title: "Acceso restringido",
+        text: permisoError,
+        toast: true,
+        position: "bottom-center",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+      return;
+    }
+
+    // ✅ 5. Guardar sesión en localStorage
+    localStorage.setItem("cuentaIniciada", "true");
+    localStorage.setItem("usuarioActual", JSON.stringify(usuario));
+
+    // ✅ 6. Mensaje de éxito y redirección
+    Swal.fire({
+      icon: "success",
+      title: `Bienvenido, ${usuario.nombre}!`,
+      text: "Accediendo al panel de administración...",
+      toast: true,
+      position: "bottom-center",
+      timer: 1800,
+      showConfirmButton: false,
+    });
+
+    setTimeout(() => {
+      navigate("/admin");
+      window.dispatchEvent(new Event("sesionActualizada"));
+    }, 1800);
   };
 
   return (
@@ -28,8 +96,10 @@ export default function LoginAdmin() {
           md={6}
           className="login-left-admin d-flex flex-column justify-content-center align-items-center text-center p-5"
         >
-          <h3 className="fw-bold mb-3">Más que una comunidad</h3>
-          <p className="px-5">Bienvenido Administrador 🌿</p>
+          <h3 className="fw-bold mb-3">Panel de Administración</h3>
+          <p className="px-5">
+            Accede para gestionar usuarios, productos y reportes 🌿
+          </p>
         </Col>
 
         {/* MITAD DERECHA */}
@@ -45,10 +115,13 @@ export default function LoginAdmin() {
             />
           </div>
 
-          <h2 className="fw-bold text-success mb-2">Huerto Hogar</h2>
-          <p className="text-muted mb-4">Inicia sesión en tu cuenta</p>
+          <h2 className="fw-bold text-success mb-2">Huerto Hogar Admin</h2>
+          <p className="text-muted mb-4">Inicia sesión como administrador</p>
 
-          <Form style={{ width: "80%", maxWidth: "400px" }} onSubmit={submitCredenciales}>          
+          <Form
+            style={{ width: "80%", maxWidth: "400px" }}
+            onSubmit={submitCredenciales}
+          >
             <Form.Group className="mb-3" controlId="email">
               <Form.Control
                 type="email"
@@ -60,21 +133,18 @@ export default function LoginAdmin() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
-              <Form.Control 
-                type="password" 
-                placeholder="Contraseña" 
+              <Form.Control
+                type="password"
+                placeholder="Contraseña"
                 value={contraseña}
                 onChange={(e) => setContraseña(e.target.value)}
-                required 
+                required
               />
             </Form.Group>
 
             <Button type="submit" className="w-100 btn-green mb-3">
               INGRESAR
             </Button>
-            {error && <Alert variant="danger">{error}</Alert>}
-
-            
           </Form>
         </Col>
       </Row>

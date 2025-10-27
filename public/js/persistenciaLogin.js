@@ -1,47 +1,35 @@
-const usuarios = [
-  {
-    nombre: "Simio",
-    apellido: "usuario",
-    correo: "simio@user.com",
-    contraseña: "123456",
-    admin: false 
-  },
-  {
-    nombre: "Admin",
-    apellido: "Choto",
-    correo: "admin@choto.com",
-    contraseña: "admin123",
-    admin: true 
-  }
-];
+import { usuarios } from "./usuarios.js";
 
-export function cuentaIniciada(){
-  return localStorage.getItem('cuentaIniciada') === 'true';
+export function cuentaIniciada() {
+  return localStorage.getItem("cuentaIniciada") === "true";
 }
 
 export function iniciarSesion(correo, contraseña) {
-  const usuario = usuarios.find(u => u.correo === correo && u.contraseña === contraseña);
-  
+  const usuario = usuarios.find(
+    (u) => u.correo === correo && u.contraseña === contraseña
+  );
+
   if (usuario) {
-    localStorage.setItem('cuentaIniciada', 'true');
-    localStorage.setItem('usuarioActual', JSON.stringify(usuario));
+    localStorage.setItem("cuentaIniciada", "true");
+    localStorage.setItem("usuarioActual", JSON.stringify(usuario));
     return {
-      success: true, usuario
+      success: true,
+      usuario,
     };
   }
-  
+
   return {
-    success: false
+    success: false,
   };
 }
 
 export function cerrarSesion() {
-  localStorage.removeItem('cuentaIniciada');
-  localStorage.removeItem('usuarioActual');
+  localStorage.removeItem("cuentaIniciada");
+  localStorage.removeItem("usuarioActual");
 }
 
 export function obtenerUsuarioActual() {
-  const usuario = localStorage.getItem('usuarioActual');
+  const usuario = localStorage.getItem("usuarioActual");
   return usuario ? JSON.parse(usuario) : null;
 }
 
@@ -52,4 +40,3 @@ export function esAdmin() {
   return usuario ? usuario.admin : false;
 }
 */
-

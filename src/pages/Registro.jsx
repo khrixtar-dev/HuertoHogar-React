@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form, Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { validarRegistro } from "../../public/js/validacion_registro";
 import "../css/registro.css";
 
 export default function Registro() {
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [correo, setCorreo] = useState("");
+  const [contraseña, setContraseña] = useState("");
+  const [repetirContraseña, setRepetirContraseña] = useState("");
+  const [aceptaTerminos, setAceptaTerminos] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const valido = validarRegistro(
+      nombre,
+      apellido,
+      correo,
+      contraseña,
+      repetirContraseña,
+      aceptaTerminos
+    );
+
+    if (valido) {
+      // simular guardado o redirección
+      setTimeout(() => {
+        navigate("/login_cliente");
+      }, 2600);
+    }
+  };
+
   return (
     <div className="registro-page">
       <Container className="d-flex justify-content-center align-items-center vh-100">
@@ -12,12 +42,14 @@ export default function Registro() {
             Crear cuenta
           </h3>
 
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="nombre">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Ingresa tu nombre"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
                 required
               />
             </Form.Group>
@@ -27,6 +59,8 @@ export default function Registro() {
               <Form.Control
                 type="text"
                 placeholder="Ingresa tu apellido"
+                value={apellido}
+                onChange={(e) => setApellido(e.target.value)}
                 required
               />
             </Form.Group>
@@ -36,6 +70,8 @@ export default function Registro() {
               <Form.Control
                 type="email"
                 placeholder="Ingresa tu correo"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
                 required
               />
             </Form.Group>
@@ -45,6 +81,8 @@ export default function Registro() {
               <Form.Control
                 type="password"
                 placeholder="Ingresa tu contraseña"
+                value={contraseña}
+                onChange={(e) => setContraseña(e.target.value)}
                 required
               />
             </Form.Group>
@@ -54,6 +92,8 @@ export default function Registro() {
               <Form.Control
                 type="password"
                 placeholder="Repite tu contraseña"
+                value={repetirContraseña}
+                onChange={(e) => setRepetirContraseña(e.target.value)}
                 required
               />
             </Form.Group>
@@ -61,6 +101,8 @@ export default function Registro() {
             <Form.Group className="mb-3" controlId="terms">
               <Form.Check
                 type="checkbox"
+                checked={aceptaTerminos}
+                onChange={(e) => setAceptaTerminos(e.target.checked)}
                 label={
                   <>
                     Acepto todos los términos en{" "}
