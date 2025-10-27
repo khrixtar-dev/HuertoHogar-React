@@ -143,7 +143,7 @@ export default function LoginCliente() {
             </a>
             <p className="small">
               ¿No tienes una cuenta?{" "}
-              <Link to="/registro" className="text-success fw-semibold">
+              <Link to="/registro" className="text-success fw-semibold" translate="no">
                 Regístrate
               </Link>
             </p>
