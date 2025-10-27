@@ -121,7 +121,7 @@ export default function Registro() {
 
             <p className="text-center small">
               ¿Ya tienes una cuenta?{" "}
-              <Link to="/login_cliente" className="text-success fw-semibold">
+              <Link to="/login_cliente" className="text-success fw-semibold" translate="no">
                 Inicia sesión aquí
               </Link>
             </p>

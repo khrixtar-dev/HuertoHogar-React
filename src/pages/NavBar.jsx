@@ -46,31 +46,31 @@ function NavBar() {
       <header>
         <Navbar expand="lg" fixed='top'>
           <Container>
-            <Navbar.Brand as={Link} to="/">
+            <Navbar.Brand as={Link} to="/" translate="no">
               <img src="/img/navbar_footer_/LogoHuertoHogar.png" alt="HuertoHogar" height="40" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav ">
               <Nav className="ms-auto" >
-                <Nav.Link as={Link} to="/nosotros">Nosotros</Nav.Link>
-                <Nav.Link as={Link} to="/tienda">Tienda</Nav.Link>
-                <Nav.Link as={Link} to="/anuncios">Anuncios</Nav.Link>
+                <Nav.Link as={Link} to="/nosotros" translate="no">Nosotros</Nav.Link>
+                <Nav.Link as={Link} to="/tienda" translate="no">Tienda</Nav.Link>
+                <Nav.Link as={Link} to="/anuncios" translate="no">Anuncios</Nav.Link>
                 {/* MODIFICADOR DEL DROPDOWN */}
                 {sesionIniciada ? (
                   //SI INICIA SESION
                   <NavDropdown title={usuario?.nombre || 'Usuario'} id="user-dropdown">
-                    <NavDropdown.Item as={Link} to="/cuenta">Cuenta</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/" onClick={manejarCerrarSesion} >Cerrar Sesión</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/cuenta" translate="no">Cuenta</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/" onClick={manejarCerrarSesion} translate="no">Cerrar Sesión</NavDropdown.Item>
                   </NavDropdown>
                 ) : (
                   // SI NO INICIA SESION
                   <NavDropdown title="Login" id="basic-nav-dropdown">
-                    <NavDropdown.Item as={Link} to="/login_cliente">Cliente</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/login_admin">Administrador</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/login_cliente" translate="no">Cliente</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/login_admin" translate="no">Administrador</NavDropdown.Item>
                   </NavDropdown>
                 )}
                 {/* BADGE DINAMICO */}
-                <Nav.Link as={Link} to="/carrito">Carrito <Badge bg="success" className="badge ms-1">{cantidadCarrito}</Badge></Nav.Link>
+                <Nav.Link as={Link} to="/carrito" translate="no">Carrito <Badge bg="success" className="badge ms-1">{cantidadCarrito}</Badge></Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
