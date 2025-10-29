@@ -78,8 +78,15 @@ export function cerrarSesion() {
 
 // Registra un nuevo usuario en el sistema
 export function registrarUsuario(userData) {
-  const users = obtenerUsuarios();  // Obtiene usuarios actuales
-  const newUser = { ...userData, id: Date.now() };  // Crea nuevo usuario con ID único
-  guardarUsuarios([...users, newUser]);  // Guarda la lista actualizada
-  return { success: true, usuario: newUser };
+  const users = obtenerUsuarios(); // Obtiene usuarios actuales
+  
+  // Verificar si el correo ya existe
+  if (users.find(u => u.correo === userData.correo)) {
+    return { success: false, error: "El correo ya está registrado" };
+  }
+  
+  const newUser = { ...userData, id: Date.now(), admin: false }; // Crea nuevo usuario con ID único
+  guardarUsuarios([...users, newUser]);
+  return { success: true, usuario: newUser };// Guarda la lista actualizada
+
 }

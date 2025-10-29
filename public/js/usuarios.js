@@ -3,6 +3,7 @@
 export const usuarios = [
   // === CLIENTES ===
   {
+    id: 1,
     nombre: "Simio",
     apellido: "Usuario",
     correo: "simio@duoc.cl",
@@ -10,6 +11,7 @@ export const usuarios = [
     admin: false,
   },
   {
+    id: 2,
     nombre: "Javier",
     apellido: "Sagredo",
     correo: "javi.sagredo@gmail.com",
@@ -17,6 +19,7 @@ export const usuarios = [
     admin: false,
   },
   {
+    id: 3,
     nombre: "Nicolás",
     apellido: "Pérez",
     correo: "n.perez@duoc.cl",
@@ -24,6 +27,7 @@ export const usuarios = [
     admin: false,
   },
   {
+    id: 4,
     nombre: "Paulina",
     apellido: "Vega",
     correo: "paulina.vega@gmail.com",
@@ -31,6 +35,7 @@ export const usuarios = [
     admin: false,
   },
   {
+    id: 5,
     nombre: "Eduardo",
     apellido: "Briceño",
     correo: "eduardo.briceno@duoc.cl",
@@ -38,6 +43,7 @@ export const usuarios = [
     admin: false,
   },
   {
+    id: 6,
     nombre: "Carolina",
     apellido: "Campos",
     correo: "caro.campos@duoc.cl",
@@ -45,6 +51,7 @@ export const usuarios = [
     admin: false,
   },
   {
+    id: 7,
     nombre: "Diego",
     apellido: "Muñoz",
     correo: "diegomunoz@gmail.com",
@@ -54,6 +61,7 @@ export const usuarios = [
 
   // === ADMINISTRADORES ===
   {
+    id: 8,
     nombre: "Admin",
     apellido: "Choto",
     correo: "admin@profesor.duoc.cl",
@@ -61,6 +69,7 @@ export const usuarios = [
     admin: true,
   },
   {
+    id: 9,
     nombre: "Patricia",
     apellido: "Aravena",
     correo: "patricia.aravena@profesor.duoc.cl",
@@ -68,6 +77,7 @@ export const usuarios = [
     admin: true,
   },
   {
+    id: 10,
     nombre: "Claudio",
     apellido: "Soto",
     correo: "claudio.soto@profesor.duoc.cl",
@@ -75,6 +85,7 @@ export const usuarios = [
     admin: true,
   },
   {
+    id: 11,
     nombre: "Felipe",
     apellido: "Martínez",
     correo: "felipe.martinez@profesor.duoc.cl",

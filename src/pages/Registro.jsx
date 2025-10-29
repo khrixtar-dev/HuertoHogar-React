@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import { validarRegistro } from "../../public/js/validacion_registro.js";
-import { obtenerUsuarios, guardarUsuarios, setSesion} from "../../public/js/persistenciaLogin.js";
+import { registrarUsuario, setSesion} from "../../public/js/persistenciaLogin.js";
 
 import "../css/registro.css";
 
@@ -34,16 +34,14 @@ export default function Registro() {
       return;
     }
 
-    // 2. Obtener lista actual de usuarios (base + agregados)
-    const listaActual = obtenerUsuarios();
-
-    // 3. Verificar si el correo ya existe
-    const yaExiste = listaActual.some((u) => u.correo === correo);
-    if (yaExiste) {
+    // 2. Registrar usuario
+    const resultado = registrarUsuario({ nombre, apellido, correo, contraseña });
+    
+    if (!resultado.success) {
       Swal.fire({
         icon: "warning",
-        title: "Correo ya registrado",
-        text: "Ya existe una cuenta con este correo.",
+        title: "Error en el registro",
+        text: resultado.error,
         toast: true,
         position: "bottom-center",
         timer: 3000,
@@ -52,21 +50,8 @@ export default function Registro() {
       return;
     }
 
-    // 4. Construir el nuevo usuario (siempre cliente)
-    const nuevoUsuario = {
-      nombre,
-      apellido,
-      correo,
-      contraseña,
-      admin: false,
-    };
-
-    // 5. Guardar el usuario en la lista y persistir
-    const nuevaLista = [...listaActual, nuevoUsuario];
-    guardarUsuarios(nuevaLista);
-
-    // 6. Iniciar sesión automática
-    setSesion(nuevoUsuario);
+    // 3. Iniciar sesión automática
+    setSesion(resultado.usuario);
 
     // 7. Feedback
     Swal.fire({
