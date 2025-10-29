@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { validarRegistro } from "../../public/js/validacion_registro";
+import Swal from "sweetalert2";
+
+import { validarRegistro } from "../../public/js/validacion_registro.js";
+import {
+  obtenerUsuarios,
+  guardarUsuarios,
+  setSesion,
+} from "../../public/js/persistenciaLogin.js";
+
 import "../css/registro.css";
 
 export default function Registro() {
@@ -17,7 +25,8 @@ export default function Registro() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const valido = validarRegistro(
+    // 1. Validar formulario
+    const esValido = validarRegistro(
       nombre,
       apellido,
       correo,
@@ -26,12 +35,60 @@ export default function Registro() {
       aceptaTerminos
     );
 
-    if (valido) {
-      // simular guardado o redirección
-      setTimeout(() => {
-        navigate("/login_cliente");
-      }, 2600);
+    if (!esValido) {
+      return;
     }
+
+    // 2. Obtener lista actual de usuarios (base + agregados)
+    const listaActual = obtenerUsuarios();
+
+    // 3. Verificar si el correo ya existe
+    const yaExiste = listaActual.some((u) => u.correo === correo);
+    if (yaExiste) {
+      Swal.fire({
+        icon: "warning",
+        title: "Correo ya registrado",
+        text: "Ya existe una cuenta con este correo.",
+        toast: true,
+        position: "bottom-center",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+      return;
+    }
+
+    // 4. Construir el nuevo usuario (siempre cliente)
+    const nuevoUsuario = {
+      nombre,
+      apellido,
+      correo,
+      contraseña,
+      admin: false,
+    };
+
+    // 5. Guardar el usuario en la lista y persistir
+    const nuevaLista = [...listaActual, nuevoUsuario];
+    guardarUsuarios(nuevaLista);
+
+    // 6. Iniciar sesión automática
+    setSesion(nuevoUsuario);
+
+    // 7. Feedback
+    Swal.fire({
+      icon: "success",
+      title: `¡Bienvenido, ${nombre}!`,
+      text: "Tu cuenta ha sido creada e iniciada.",
+      toast: true,
+      position: "bottom-center",
+      timer: 2200,
+      showConfirmButton: false,
+    });
+
+    // 8. Redirigir + actualizar navbar
+    setTimeout(() => {
+      navigate("/");
+      window.dispatchEvent(new Event("sesionActualizada"));
+    }, 2200);
   };
 
   return (
@@ -121,7 +178,11 @@ export default function Registro() {
 
             <p className="text-center small">
               ¿Ya tienes una cuenta?{" "}
-              <Link to="/login_cliente" className="text-success fw-semibold" translate="no">
+              <Link
+                to="/login_cliente"
+                className="text-success fw-semibold"
+                translate="no"
+              >
                 Inicia sesión aquí
               </Link>
             </p>

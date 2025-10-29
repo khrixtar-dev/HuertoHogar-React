@@ -7,8 +7,12 @@ import Swal from "sweetalert2";
 import {
   validarLogin,
   validarPermisos,
-} from "../../public/js/validacionesLogin";
-import { usuarios } from "../../public/js/usuarios";
+} from "../../public/js/validacionesLogin.js";
+
+import {
+  obtenerUsuarios,
+  setSesion,
+} from "../../public/js/persistenciaLogin.js";
 
 import "../css/login-clientes.css";
 
@@ -20,7 +24,7 @@ export default function LoginCliente() {
   const submitCredenciales = (e) => {
     e.preventDefault();
 
-    // ✅ 1. Validar formato del correo y contraseña
+    // 1. Validaciones de formato
     const errores = validarLogin(correo, contraseña);
     if (errores.length > 0) {
       Swal.fire({
@@ -35,17 +39,18 @@ export default function LoginCliente() {
       return;
     }
 
-    // ✅ 2. Buscar usuario en la lista
-    const usuario = usuarios.find(
+    // 2. Buscar usuario en lista actual (incluye registrados)
+    const lista = obtenerUsuarios();
+    const usuario = lista.find(
       (u) => u.correo === correo && u.contraseña === contraseña
     );
 
-    // Si no se encontró usuario
+    // 3. Usuario no encontrado
     if (!usuario) {
       Swal.fire({
         icon: "error",
         title: "Credenciales incorrectas",
-        text: "El correo o la contraseña no coinciden con ningún usuario registrado.",
+        text: "El correo o la contraseña no coinciden.",
         toast: true,
         position: "bottom-center",
         timer: 3000,
@@ -54,7 +59,7 @@ export default function LoginCliente() {
       return;
     }
 
-    // ✅ 3. Validar permisos (solo clientes pueden acceder aquí)
+    // 4. Validar permisos: este login es de cliente
     const permisoError = validarPermisos(usuario, "cliente");
     if (permisoError) {
       Swal.fire({
@@ -69,11 +74,10 @@ export default function LoginCliente() {
       return;
     }
 
-    // ✅ 4. Guardar sesión en localStorage
-    localStorage.setItem("cuentaIniciada", "true");
-    localStorage.setItem("usuarioActual", JSON.stringify(usuario));
+    // 5. Guardar sesión
+    setSesion(usuario);
 
-    // ✅ 5. Mostrar mensaje de éxito
+    // 6. Toast de éxito
     Swal.fire({
       icon: "success",
       title: `¡Bienvenido, ${usuario.nombre}!`,
@@ -84,7 +88,7 @@ export default function LoginCliente() {
       showConfirmButton: false,
     });
 
-    // ✅ 6. Redirigir y actualizar navbar al finalizar la animación
+    // 7. Redirigir y actualizar navbar
     setTimeout(() => {
       navigate("/");
       window.dispatchEvent(new Event("sesionActualizada"));
@@ -94,7 +98,7 @@ export default function LoginCliente() {
   return (
     <Container fluid className="login-fullscreen p-0">
       <Row className="g-0 vh-100">
-        {/* MITAD IZQUIERDA */}
+        {/* IZQUIERDA */}
         <Col
           md={6}
           className="login-left-cliente d-flex flex-column justify-content-center align-items-center text-center p-5"
@@ -143,14 +147,14 @@ export default function LoginCliente() {
             </a>
             <p className="small">
               ¿No tienes una cuenta?{" "}
-              <Link to="/registro" className="text-success fw-semibold" translate="no">
+              <Link to="/registro" className="text-success fw-semibold">
                 Regístrate
               </Link>
             </p>
           </Form>
         </Col>
 
-        {/* MITAD DERECHA */}
+        {/* DERECHA */}
         <Col
           md={6}
           className="login-right-cliente d-flex flex-column justify-content-center align-items-center text-center p-5"
