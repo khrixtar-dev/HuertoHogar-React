@@ -4,11 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import { validarRegistro } from "../../public/js/validacion_registro.js";
-import {
-  obtenerUsuarios,
-  guardarUsuarios,
-  setSesion,
-} from "../../public/js/persistenciaLogin.js";
+import { obtenerUsuarios, guardarUsuarios, setSesion} from "../../public/js/persistenciaLogin.js";
 
 import "../css/registro.css";
 
@@ -22,8 +18,7 @@ export default function Registro() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (e) => {e.preventDefault();
 
     // 1. Validar formulario
     const esValido = validarRegistro(
