@@ -6,9 +6,8 @@
 .carrito-vacio {
   min-height: 60vh;
   margin-top: 20vh;
-  
 }
-.card-header{
+.card-header {
   background-color: #ebebeb;
 }
 .productos-card {
@@ -113,11 +112,11 @@
     justify-content: flex-start;
     margin: 0.5rem 0;
   }
-  
+
   .subtotal {
     text-align: left;
   }
-  
+
   .resumen-card {
     position: static;
     margin-top: 2rem;
