@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/css/login-clientes.css</title>
+    <title>Code coverage report for src/css/admin-productos.css</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/css</a> login-clientes.css</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/css</a> admin-productos.css</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -126,7 +126,32 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,68 +214,118 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* Pantalla completa */
-.login-fullscreen {
-  height: 100vh;
-  overflow: hidden;
-}
-&nbsp;
-/* Lado izquierdo: blanco limpio */
-.login-left-cliente {
-  background-color:#f6f5f2;
-}
-&nbsp;
-/* Lado derecho: degradado natural Huerto Hogar */
-.login-right-cliente {
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url("/img/nosotros_/Fondo.jpg") no-repeat center center;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">body {
+  background-image: url("/img/fondo_home_admin.jpg");
   background-size: cover;
-  color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
 }
 &nbsp;
-/* Lado derecho: degradado natural Huerto Hogar
-&nbsp;
-&nbsp;
-.login-right {
-  background: linear-gradient(135deg, #a8e6cf 0%, #65b968 100%);
-  color: #fff;
-}
-&nbsp;
-*/
-&nbsp;
-/* Botón estilo Huerto Hogar */
-.btn-green {
-  background-color: #65b968;
-  border: none;
-  color: #fff;
-  font-weight: 600;
-  transition: 0.3s;
-}
-&nbsp;
-.btn-green:hover {
-  background-color: #4d944f;
-}
-&nbsp;
-/* Alineación del texto */
-.login-right-cliente h3 {
-  font-size: 1.8rem;
-}
-&nbsp;
-.login-right-cliente p {
-  font-size: 1rem;
-  max-width: 400px;
-}
-&nbsp;
-.logo-box {
-  background-color: #198754; /* verde claro */
-  border-radius: 12px;
+.admin-container {
+  margin-top: 2rem;
   padding: 1rem;
-  width: 150px;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+&nbsp;
+.admin-container h2 {
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+}
+&nbsp;
+/* Tabla */
+#tablaProductos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+&nbsp;
+#tablaProductos th,
+#tablaProductos td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  text-align: center;
+}
+&nbsp;
+#tablaProductos th {
+  background-color: hsl(0, 0%, 34%);
+  color: #fff;
+}
+&nbsp;
+#tablaProductos tbody tr:hover {
+  background-color: #f5f5f5;
+  color: #000;
+}
+&nbsp;
+/* Imagen de producto */
+#tablaProductos img {
+  max-width: 80px;
+  height: auto;
+  border-radius: 4px;
+}
+&nbsp;
+/* Botones */
+.table-actions .btn {
+  width: 80px;
+  margin: 2px 0;
+}
+&nbsp;
+/* Botón agregar */
+.btn-success {
+  display: block;
+  width: 200px;
+  margin: 1rem auto 0;
+  font-weight: 600;
+}
+&nbsp;
+/* Scroll horizontal */
+.table-responsive {
+  overflow-x: auto;
+}
+&nbsp;
+/* Responsive */
+@media (max-width: 768px) {
+  #tablaProductos th,
+  #tablaProductos td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+&nbsp;
+  .admin-container h2 {
+    font-size: 1.5rem;
+  }
+&nbsp;
+  .btn-success {
+    width: 100%;
+  }
 }
 &nbsp;</pre></td></tr></table></pre>
 

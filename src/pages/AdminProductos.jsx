@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { PRODUCTOS } from "../../public/js/productos_catalogo";
 import "../css/admin-productos.css";
