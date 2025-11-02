@@ -1,0 +1,35 @@
+.cuenta-container {
+  margin-top: 5rem;
+  padding-top: 3rem;
+}
+
+.cuenta-header {
+  background-color: #198754;
+  color: white;
+  text-align: center;
+}
+
+.cuenta-body {
+  padding: 2rem;
+}
+
+.cuenta-avatar {
+  background-color: #198754;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+}
+
+.cuenta-avatar-text {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.cuenta-info-row {
+  margin-bottom: 1rem;
+}
