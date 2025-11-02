@@ -14,6 +14,8 @@ import Cuenta from "./pages/Cuenta";
 import HomeAdmin from "./pages/admin/HomeAdmin";
 
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import AdminProductos from "./pages/AdminProductos";
+import AdminUsuarios from "./pages/AdminUsuarios";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         {/* Admin */}
         <Route path="/login_admin" element={<LoginAdmin />} />
         <Route path="/admin" element={<HomeAdmin />} />
+        <Route path="/admin/productos" element={<AdminProductos />} />
+        <Route path="/admin/usuarios" element={<AdminUsuarios />} />
       </Routes>
       <Footer />
     </Router>

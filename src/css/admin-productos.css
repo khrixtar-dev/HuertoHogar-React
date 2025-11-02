@@ -1,0 +1,88 @@
+body {
+  background-image: url("/img/fondo_home_admin.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+}
+
+.admin-container {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.admin-container h2 {
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Tabla */
+#tablaProductos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+#tablaProductos th,
+#tablaProductos td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#tablaProductos th {
+  background-color: hsl(0, 0%, 34%);
+  color: #fff;
+}
+
+#tablaProductos tbody tr:hover {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+/* Imagen de producto */
+#tablaProductos img {
+  max-width: 80px;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Botones */
+.table-actions .btn {
+  width: 80px;
+  margin: 2px 0;
+}
+
+/* Botón agregar */
+.btn-success {
+  display: block;
+  width: 200px;
+  margin: 1rem auto 0;
+  font-weight: 600;
+}
+
+/* Scroll horizontal */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #tablaProductos th,
+  #tablaProductos td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .admin-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn-success {
+    width: 100%;
+  }
+}
