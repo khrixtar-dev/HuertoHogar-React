@@ -62,3 +62,12 @@
     height: 55px;
   }
 }
+
+/* COLORES PARA FOOTER COMO ADMIN */
+.footer-admin {
+  background-color: #484d52 !important;
+}
+
+.footer-admin .footer-bottom {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}

@@ -10,6 +10,7 @@ import Carrito from "./pages/Carrito";
 import LoginCliente from "./pages/LoginClientes";
 import LoginAdmin from "./pages/LoginAdmin";
 import Registro from "./pages/Registro";
+import Cuenta from "./pages/Cuenta";
 import HomeAdmin from "./pages/admin/HomeAdmin";
 
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
@@ -27,6 +28,7 @@ function App() {
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/login_cliente" element={<LoginCliente />} />
         <Route path="/registro" element={<Registro />} />
+        <Route path="/cuenta" element={<Cuenta />} />
         {/* Admin */}
         <Route path="/login_admin" element={<LoginAdmin />} />
         <Route path="/admin" element={<HomeAdmin />} />
