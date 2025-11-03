@@ -162,7 +162,6 @@ describe("🧪 Componente AdminProductos", () => {
     const logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
     render(<AdminProductos />);
 
-    // Agregamos un producto válido para disparar el useEffect de guardado
     fireEvent.click(screen.getByText(/agregar producto/i));
     const inputs = await screen.findAllByRole("textbox");
     fireEvent.change(inputs[0], { target: { value: "p55" } });
@@ -189,9 +188,7 @@ describe("🧪 Componente AdminProductos", () => {
 
     render(<AdminProductos />);
 
-    // Agregar producto para provocar cambio en listaProductos
     fireEvent.click(screen.getByText(/agregar producto/i));
-
     const inputs = await screen.findAllByRole("textbox");
     fireEvent.change(inputs[0], { target: { value: "p77" } });
     fireEvent.change(inputs[1], { target: { value: "Betarraga" } });
@@ -229,7 +226,7 @@ describe("🧪 Componente AdminProductos", () => {
     fireEvent.click(screen.getByText(/agregar producto/i));
 
     const inputs = await screen.findAllByRole("textbox");
-    fireEvent.change(inputs[0], { target: { value: "p1" } }); // mismo ID existente
+    fireEvent.change(inputs[0], { target: { value: "p1" } });
     fireEvent.change(inputs[1], { target: { value: "Repetido" } });
     fireEvent.change(inputs[2], { target: { value: "2000" } });
     fireEvent.change(inputs[3], { target: { value: "/img/repetido.png" } });
@@ -238,22 +235,20 @@ describe("🧪 Componente AdminProductos", () => {
     fireEvent.click(screen.getByText("Guardar"));
     expect(window.alert).toHaveBeenCalledWith("El ID ya existe");
   });
+
   test("solo guarda en localStorage cuando hay productos (no con lista vacía)", async () => {
     mockGetItem.mockReturnValue("[]");
     const setItemSpy = vi.spyOn(localStorage, "setItem");
     render(<AdminProductos />);
 
-    // primer guardado: carga de PRODUCTOS
     await waitFor(() => {
       expect(setItemSpy).toHaveBeenCalled();
     });
 
-    // limpiamos y re-renderizamos
     setItemSpy.mockClear();
     render(<AdminProductos />);
 
     await waitFor(() => {
-      // puede ser 1 o 2 veces debido al doble render de React 18 en modo estricto
       expect(setItemSpy.mock.calls.length).toBeGreaterThanOrEqual(1);
       expect(setItemSpy.mock.calls.length).toBeLessThanOrEqual(2);
     });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PRODUCTOS } from "../../public/js/productos_catalogo";
 import "../css/admin-productos.css";
 
@@ -23,10 +23,11 @@ export default function AdminProductos() {
     }
   }, []);
 
-  // Guardar cambios en localStorage
+  // Guardar cada vez que cambia la lista
   useEffect(() => {
     if (listaProductos.length > 0) {
       localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
+      console.log("💾 Guardado en localStorage:", listaProductos.length);
     }
   }, [listaProductos]);
 
@@ -109,12 +110,13 @@ export default function AdminProductos() {
               </tr>
             </thead>
             <tbody>
-              {/* Nuevo producto */}
+              {/* 🟢 Nuevo producto */}
               {nuevoProducto && (
-                <tr className="ad-prod-new">
+                <tr className="ad-prod-row-new">
                   <td>
                     <input
                       type="text"
+                      className="form-control"
                       value={nuevoProducto.id}
                       onChange={(e) =>
                         setNuevoProducto({
@@ -127,6 +129,7 @@ export default function AdminProductos() {
                   <td>
                     <input
                       type="text"
+                      className="form-control"
                       value={nuevoProducto.nombre}
                       onChange={(e) =>
                         setNuevoProducto({
@@ -138,7 +141,8 @@ export default function AdminProductos() {
                   </td>
                   <td>
                     <input
-                      type="number"
+                      type="text"
+                      className="form-control"
                       value={nuevoProducto.precio}
                       onChange={(e) =>
                         setNuevoProducto({
@@ -151,8 +155,9 @@ export default function AdminProductos() {
                   <td>
                     <input
                       type="text"
+                      className="form-control"
+                      placeholder="/img/productos_/nombre.png o URL"
                       value={nuevoProducto.imagen}
-                      placeholder="/img/productos_/nombre.png o URL externa"
                       onChange={(e) =>
                         setNuevoProducto({
                           ...nuevoProducto,
@@ -164,13 +169,14 @@ export default function AdminProductos() {
                       <img
                         src={nuevoProducto.imagen}
                         alt="Preview"
-                        className="ad-prod-img-preview"
+                        className="ad-prod-img"
                       />
                     )}
                   </td>
                   <td>
                     <input
                       type="text"
+                      className="form-control"
                       value={nuevoProducto.descripcion}
                       onChange={(e) =>
                         setNuevoProducto({
@@ -197,7 +203,7 @@ export default function AdminProductos() {
                 </tr>
               )}
 
-              {/* Productos existentes */}
+              {/* 🟠 Productos existentes */}
               {listaProductos.map((producto) =>
                 editandoId === producto.id ? (
                   <tr key={producto.id}>
@@ -205,6 +211,7 @@ export default function AdminProductos() {
                     <td>
                       <input
                         type="text"
+                        className="form-control"
                         value={producto.nombre}
                         onChange={(e) =>
                           setListaProductos((prev) =>
@@ -219,13 +226,14 @@ export default function AdminProductos() {
                     </td>
                     <td>
                       <input
-                        type="number"
+                        type="text"
+                        className="form-control"
                         value={producto.precio}
                         onChange={(e) =>
                           setListaProductos((prev) =>
                             prev.map((p) =>
                               p.id === producto.id
-                                ? { ...p, precio: Number(e.target.value) }
+                                ? { ...p, precio: e.target.value }
                                 : p
                             )
                           )
@@ -235,6 +243,7 @@ export default function AdminProductos() {
                     <td>
                       <input
                         type="text"
+                        className="form-control"
                         value={producto.imagen}
                         onChange={(e) =>
                           setListaProductos((prev) =>
@@ -250,13 +259,14 @@ export default function AdminProductos() {
                         <img
                           src={producto.imagen}
                           alt={producto.nombre}
-                          className="ad-prod-img-preview"
+                          className="ad-prod-img"
                         />
                       )}
                     </td>
                     <td>
                       <input
                         type="text"
+                        className="form-control"
                         value={producto.descripcion}
                         onChange={(e) =>
                           setListaProductos((prev) =>
@@ -271,7 +281,7 @@ export default function AdminProductos() {
                     </td>
                     <td>
                       <button
-                        className="ad-prod-btn blue"
+                        className="ad-prod-btn green"
                         onClick={() =>
                           handleGuardarEdicion(producto.id, producto)
                         }
@@ -290,7 +300,7 @@ export default function AdminProductos() {
                   <tr key={producto.id}>
                     <td>{producto.id}</td>
                     <td>{producto.nombre}</td>
-                    <td>${producto.precio.toLocaleString()}</td>
+                    <td>${Number(producto.precio).toLocaleString()}</td>
                     <td>
                       <img
                         src={producto.imagen}

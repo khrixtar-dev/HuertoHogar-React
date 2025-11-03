@@ -151,7 +151,36 @@
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
 <a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,92 +268,150 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">body {
-  background-image: url("/img/fondo_home_admin.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* admin-productos.css aislado con prefijo ad-prod- */
+&nbsp;
+.ad-prod-page {
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding: 2rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
+  color: #333;
 }
 &nbsp;
-.admin-container {
-  margin-top: 2rem;
-  padding: 1rem;
+.ad-prod-container {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 &nbsp;
-.admin-container h2 {
-  margin-bottom: 1.5rem;
-  color: #ffffff;
-  font-weight: 700;
+.ad-prod-container h2 {
   text-align: center;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem;
 }
 &nbsp;
-/* Tabla */
-#tablaProductos {
+/* Tabla principal */
+.ad-prod-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1rem;
 }
 &nbsp;
-#tablaProductos th,
-#tablaProductos td {
-  padding: 0.75rem;
-  vertical-align: middle;
-  text-align: center;
-}
-&nbsp;
-#tablaProductos th {
-  background-color: hsl(0, 0%, 34%);
+.ad-prod-table th {
+  background-color: #555;
   color: #fff;
+  text-align: center;
+  padding: 0.8rem;
 }
 &nbsp;
-#tablaProductos tbody tr:hover {
-  background-color: #f5f5f5;
-  color: #000;
+.ad-prod-table td {
+  text-align: center;
+  padding: 0.8rem;
+  border-bottom: 1px solid #ddd;
 }
 &nbsp;
-/* Imagen de producto */
-#tablaProductos img {
+.ad-prod-table tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+&nbsp;
+.ad-prod-table tr:hover {
+  background-color: #e9e9e9;
+}
+&nbsp;
+/* Imagenes */
+.ad-prod-img {
   max-width: 80px;
-  height: auto;
+  border-radius: 6px;
+}
+&nbsp;
+.ad-prod-img-preview {
+  width: 60px;
+  margin-top: 5px;
   border-radius: 4px;
 }
 &nbsp;
 /* Botones */
-.table-actions .btn {
-  width: 80px;
-  margin: 2px 0;
+.ad-prod-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem 0.8rem;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+  margin: 2px;
 }
 &nbsp;
-/* Botón agregar */
-.btn-success {
+.ad-prod-btn.blue {
+  background-color: #007bff;
+}
+&nbsp;
+.ad-prod-btn.red {
+  background-color: #dc3545;
+}
+&nbsp;
+.ad-prod-btn.green {
+  background-color: #28a745;
   display: block;
-  width: 200px;
-  margin: 1rem auto 0;
-  font-weight: 600;
+  margin: 1.5rem auto 0;
 }
 &nbsp;
-/* Scroll horizontal */
-.table-responsive {
-  overflow-x: auto;
+.ad-prod-btn.gray {
+  background-color: #6c757d;
+}
+&nbsp;
+.ad-prod-btn:hover {
+  opacity: 0.85;
+}
+&nbsp;
+/* Inputs */
+.ad-prod-table input[type="text"],
+.ad-prod-table input[type="number"] {
+  width: 100%;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 &nbsp;
 /* Responsive */
 @media (max-width: 768px) {
-  #tablaProductos th,
-  #tablaProductos td {
+  .ad-prod-container {
+    padding: 1rem;
+  }
+&nbsp;
+  .ad-prod-table th,
+  .ad-prod-table td {
     font-size: 0.85rem;
-    padding: 0.5rem;
-  }
-&nbsp;
-  .admin-container h2 {
-    font-size: 1.5rem;
-  }
-&nbsp;
-  .btn-success {
-    width: 100%;
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -334,7 +421,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-03T01:23:32.023Z
+                at 2025-11-03T21:12:53.663Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

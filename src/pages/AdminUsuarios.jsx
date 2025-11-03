@@ -9,6 +9,7 @@ export default function AdminUsuarios() {
 
   const emailRegex = /^[\w._%+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/;
 
+  // 🧩 Cargar usuarios al inicio
   useEffect(() => {
     try {
       const data = JSON.parse(localStorage.getItem("listaUsuarios"));
@@ -19,18 +20,21 @@ export default function AdminUsuarios() {
         localStorage.setItem("listaUsuarios", JSON.stringify(USUARIOS_BASE));
       }
     } catch (err) {
-      console.error("Error cargando usuarios:", err);
+      console.error("❌ Error cargando usuarios:", err);
       setListaUsuarios(USUARIOS_BASE);
       localStorage.setItem("listaUsuarios", JSON.stringify(USUARIOS_BASE));
     }
   }, []);
 
+  // 🧩 Guardar cambios en localStorage
   useEffect(() => {
     if (listaUsuarios.length > 0) {
       localStorage.setItem("listaUsuarios", JSON.stringify(listaUsuarios));
+      console.log("💾 Guardado en localStorage:", listaUsuarios.length);
     }
   }, [listaUsuarios]);
 
+  // ➕ Agregar usuario
   const handleAgregar = () => {
     setNuevoUsuario({
       id: "",
@@ -42,6 +46,7 @@ export default function AdminUsuarios() {
     });
   };
 
+  // 💾 Guardar nuevo usuario
   const handleGuardarNuevo = () => {
     const u = {
       ...nuevoUsuario,
@@ -69,17 +74,14 @@ export default function AdminUsuarios() {
       return;
     }
 
-    const nuevo = {
-      ...u,
-      id: Number.isNaN(Number(u.id)) ? u.id : Number(u.id),
-    };
-
-    setListaUsuarios((prev) => [...prev, nuevo]);
+    setListaUsuarios((prev) => [...prev, u]);
     setNuevoUsuario(null);
   };
 
+  // ✏️ Editar usuario
   const handleEditar = (id) => setEditandoId(id);
 
+  // 💾 Guardar edición
   const handleGuardarEdicion = (id) => {
     const usuarioEditado = listaUsuarios.find((u) => u.id === id);
     if (!usuarioEditado) return;
@@ -108,12 +110,14 @@ export default function AdminUsuarios() {
     setEditandoId(null);
   };
 
+  // ❌ Eliminar usuario
   const handleEliminar = (id) => {
     if (window.confirm("¿Eliminar este usuario?")) {
       setListaUsuarios((prev) => prev.filter((u) => u.id !== id));
     }
   };
 
+  // 🚫 Cancelar acción
   const handleCancelar = () => {
     setEditandoId(null);
     setNuevoUsuario(null);
@@ -138,6 +142,7 @@ export default function AdminUsuarios() {
               </tr>
             </thead>
             <tbody>
+              {/* 🟢 Nuevo usuario */}
               {nuevoUsuario && (
                 <tr className="ad-usr-new">
                   <td>
@@ -175,7 +180,7 @@ export default function AdminUsuarios() {
                   </td>
                   <td>
                     <input
-                      type="email"
+                      type="text"
                       value={nuevoUsuario.correo}
                       onChange={(e) =>
                         setNuevoUsuario({
@@ -226,6 +231,7 @@ export default function AdminUsuarios() {
                 </tr>
               )}
 
+              {/* 🟠 Lista de usuarios */}
               {listaUsuarios.map((usuario) =>
                 editandoId === usuario.id ? (
                   <tr key={usuario.id}>
@@ -262,7 +268,7 @@ export default function AdminUsuarios() {
                     </td>
                     <td>
                       <input
-                        type="email"
+                        type="text"
                         value={usuario.correo}
                         onChange={(e) =>
                           setListaUsuarios((prev) =>

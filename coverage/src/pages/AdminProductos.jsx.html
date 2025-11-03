@@ -399,8 +399,10 @@
 <a name='L334'></a><a href='#L334'>334</a>
 <a name='L335'></a><a href='#L335'>335</a>
 <a name='L336'></a><a href='#L336'>336</a>
-<a name='L337'></a><a href='#L337'>337</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L337'></a><a href='#L337'>337</a>
+<a name='L338'></a><a href='#L338'>338</a>
+<a name='L339'></a><a href='#L339'>339</a>
+<a name='L340'></a><a href='#L340'>340</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -520,7 +522,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -710,7 +716,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -735,8 +740,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
-import { useEffect, useState } from "react";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useState } from "react";
 import { PRODUCTOS } from "../../public/js/productos_catalogo";
 import "../css/admin-productos.css";
 &nbsp;
@@ -831,146 +836,36 @@ export default function AdminProductos() {
   };
 &nbsp;
   return (
-    &lt;main className="admin-container"&gt;
-      &lt;h2&gt;Gestión de Productos&lt;/h2&gt;
+    &lt;main className="ad-prod-page"&gt;
+      &lt;section className="ad-prod-container"&gt;
+        &lt;h2&gt;Gestión de Productos&lt;/h2&gt;
 &nbsp;
-      &lt;div className="table-responsive"&gt;
-        &lt;table className="table table-striped table-hover" id="tablaProductos"&gt;
-          &lt;thead className="table-dark"&gt;
-            &lt;tr&gt;
-              &lt;th&gt;ID&lt;/th&gt;
-              &lt;th&gt;Nombre&lt;/th&gt;
-              &lt;th&gt;Precio&lt;/th&gt;
-              &lt;th&gt;Imagen&lt;/th&gt;
-              &lt;th&gt;Descripción&lt;/th&gt;
-              &lt;th&gt;Acciones&lt;/th&gt;
-            &lt;/tr&gt;
-          &lt;/thead&gt;
-          &lt;tbody&gt;
-            {/* Nuevo producto */}
-            {nuevoProducto &amp;&amp; (
-              &lt;tr className="new-product"&gt;
-                &lt;td&gt;
-                  &lt;input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.id}
-                    onChange={(e) =&gt;
-                      setNuevoProducto({ ...nuevoProducto, id: e.target.value })
-                    }
-                  /&gt;
-                &lt;/td&gt;
-                &lt;td&gt;
-                  &lt;input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.nombre}
-                    onChange={(e) =&gt;
-                      setNuevoProducto({
-                        ...nuevoProducto,
-                        nombre: e.target.value,
-                      })
-                    }
-                  /&gt;
-                &lt;/td&gt;
-                &lt;td&gt;
-                  &lt;input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.precio}
-                    onChange={(e) =&gt;
-                      setNuevoProducto({
-                        ...nuevoProducto,
-                        precio: e.target.value,
-                      })
-                    }
-                  /&gt;
-                &lt;/td&gt;
-                &lt;td&gt;
-                  &lt;input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.imagen}
-                    placeholder="/img/productos_/nombre.png o URL externa"
-                    onChange={(e) =&gt;
-                      setNuevoProducto({
-                        ...nuevoProducto,
-                        imagen: e.target.value,
-                      })
-                    }
-                  /&gt;
-                  {nuevoProducto.imagen &amp;&amp; (
-                    &lt;img
-                      src={nuevoProducto.imagen}
-                      alt="Preview"
-                      style={{ width: "60px", marginTop: "5px" }}
-                    /&gt;
-                  )}
-                &lt;/td&gt;
-                &lt;td&gt;
-                  &lt;input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.descripcion}
-                    onChange={(e) =&gt;
-                      setNuevoProducto({
-                        ...nuevoProducto,
-                        descripcion: e.target.value,
-                      })
-                    }
-                  /&gt;
-                &lt;/td&gt;
-                &lt;td&gt;
-                  &lt;button
-                    className="btn btn-sm btn-success mb-1"
-                    onClick={handleGuardarNuevo}
-                  &gt;
-                    Guardar
-                  &lt;/button&gt;
-                  &lt;button
-                    className="btn btn-sm btn-secondary mb-1"
-                    onClick={handleCancelar}
-                  &gt;
-                    Cancelar
-                  &lt;/button&gt;
-                &lt;/td&gt;
+        &lt;div className="ad-prod-table-wrapper"&gt;
+          &lt;table className="ad-prod-table"&gt;
+            &lt;thead&gt;
+              &lt;tr&gt;
+                &lt;th&gt;ID&lt;/th&gt;
+                &lt;th&gt;Nombre&lt;/th&gt;
+                &lt;th&gt;Precio&lt;/th&gt;
+                &lt;th&gt;Imagen&lt;/th&gt;
+                &lt;th&gt;Descripción&lt;/th&gt;
+                &lt;th&gt;Acciones&lt;/th&gt;
               &lt;/tr&gt;
-            )}
-&nbsp;
-            {/* Productos existentes */}
-            {listaProductos.map((producto) =&gt;
-              editandoId === producto.id ? (
-                &lt;tr key={producto.id}&gt;
-                  &lt;td&gt;{producto.id}&lt;/td&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+              {/* 🟢 Nuevo producto */}
+              {nuevoProducto &amp;&amp; (
+                &lt;tr className="ad-prod-row-new"&gt;
                   &lt;td&gt;
                     &lt;input
                       type="text"
                       className="form-control"
-                      value={producto.nombre}
+                      value={nuevoProducto.id}
                       onChange={(e) =&gt;
-                        setListaProductos((prev) =&gt;
-                          prev.map((p) =&gt;
-                            p.id === producto.id
-                              ? { ...p, nombre: e.target.value }
-                              : <span class="branch-1 cbranch-no" title="branch not covered" >p</span>
-                          )
-                        )
-                      }
-                    /&gt;
-                  &lt;/td&gt;
-                  &lt;td&gt;
-                    &lt;input
-                      type="number"
-                      className="form-control"
-                      value={producto.precio}
-                      onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt;
-<span class="cstat-no" title="statement not covered" >                        setListaProductos(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >                          prev.map(<span class="fstat-no" title="function not covered" >(p</span>) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >                            p.id === producto.id</span>
-                              ? { ...p, precio: Number(e.target.value) }
-                              : p
-                          )
-                        )
+                        setNuevoProducto({
+                          ...nuevoProducto,
+                          id: e.target.value,
+                        })
                       }
                     /&gt;
                   &lt;/td&gt;
@@ -978,22 +873,46 @@ export default function AdminProductos() {
                     &lt;input
                       type="text"
                       className="form-control"
-                      value={producto.imagen}
-                      onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt;
-<span class="cstat-no" title="statement not covered" >                        setListaProductos(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >                          prev.map(<span class="fstat-no" title="function not covered" >(p</span>) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >                            p.id === producto.id</span>
-                              ? { ...p, imagen: e.target.value }
-                              : p
-                          )
-                        )
+                      value={nuevoProducto.nombre}
+                      onChange={(e) =&gt;
+                        setNuevoProducto({
+                          ...nuevoProducto,
+                          nombre: e.target.value,
+                        })
                       }
                     /&gt;
-                    {producto.imagen &amp;&amp; (
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;input
+                      type="text"
+                      className="form-control"
+                      value={nuevoProducto.precio}
+                      onChange={(e) =&gt;
+                        setNuevoProducto({
+                          ...nuevoProducto,
+                          precio: e.target.value,
+                        })
+                      }
+                    /&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;input
+                      type="text"
+                      className="form-control"
+                      placeholder="/img/productos_/nombre.png o URL"
+                      value={nuevoProducto.imagen}
+                      onChange={(e) =&gt;
+                        setNuevoProducto({
+                          ...nuevoProducto,
+                          imagen: e.target.value,
+                        })
+                      }
+                    /&gt;
+                    {nuevoProducto.imagen &amp;&amp; (
                       &lt;img
-                        src={producto.imagen}
-                        alt={producto.nombre}
-                        style={{ width: "60px", marginTop: "5px" }}
+                        src={nuevoProducto.imagen}
+                        alt="Preview"
+                        className="ad-prod-img"
                       /&gt;
                     )}
                   &lt;/td&gt;
@@ -1001,73 +920,163 @@ export default function AdminProductos() {
                     &lt;input
                       type="text"
                       className="form-control"
-                      value={producto.descripcion}
-                      onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt;
-<span class="cstat-no" title="statement not covered" >                        setListaProductos(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >                          prev.map(<span class="fstat-no" title="function not covered" >(p</span>) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >                            p.id === producto.id</span>
-                              ? { ...p, descripcion: e.target.value }
-                              : p
-                          )
-                        )
+                      value={nuevoProducto.descripcion}
+                      onChange={(e) =&gt;
+                        setNuevoProducto({
+                          ...nuevoProducto,
+                          descripcion: e.target.value,
+                        })
                       }
                     /&gt;
                   &lt;/td&gt;
                   &lt;td&gt;
                     &lt;button
-                      className="btn btn-sm btn-success mb-1"
-                      onClick={() =&gt;
-                        handleGuardarEdicion(producto.id, producto)
-                      }
+                      className="ad-prod-btn green"
+                      onClick={handleGuardarNuevo}
                     &gt;
                       Guardar
                     &lt;/button&gt;
                     &lt;button
-                      className="btn btn-sm btn-secondary mb-1"
+                      className="ad-prod-btn gray"
                       onClick={handleCancelar}
                     &gt;
                       Cancelar
                     &lt;/button&gt;
                   &lt;/td&gt;
                 &lt;/tr&gt;
-              ) : (
-                &lt;tr key={producto.id}&gt;
-                  &lt;td&gt;{producto.id}&lt;/td&gt;
-                  &lt;td&gt;{producto.nombre}&lt;/td&gt;
-                  &lt;td&gt;${producto.precio.toLocaleString()}&lt;/td&gt;
-                  &lt;td&gt;
-                    &lt;img
-                      src={producto.imagen}
-                      alt={producto.nombre}
-                      className="img-thumbnail"
-                      style={{ width: "80px" }}
-                    /&gt;
-                  &lt;/td&gt;
-                  &lt;td&gt;{producto.descripcion}&lt;/td&gt;
-                  &lt;td&gt;
-                    &lt;button
-                      className="btn btn-sm btn-primary mb-1"
-                      onClick={() =&gt; handleEditar(producto.id)}
-                    &gt;
-                      Editar
-                    &lt;/button&gt;
-                    &lt;button
-                      className="btn btn-sm btn-danger mb-1"
-                      onClick={() =&gt; handleEliminar(producto.id)}
-                    &gt;
-                      Eliminar
-                    &lt;/button&gt;
-                  &lt;/td&gt;
-                &lt;/tr&gt;
-              )
-            )}
-          &lt;/tbody&gt;
-        &lt;/table&gt;
-      &lt;/div&gt;
+              )}
 &nbsp;
-      &lt;button className="btn btn-success mt-3" onClick={handleAgregar}&gt;
-        Agregar Producto
-      &lt;/button&gt;
+              {/* 🟠 Productos existentes */}
+              {listaProductos.map((producto) =&gt;
+                editandoId === producto.id ? (
+                  &lt;tr key={producto.id}&gt;
+                    &lt;td&gt;{producto.id}&lt;/td&gt;
+                    &lt;td&gt;
+                      &lt;input
+                        type="text"
+                        className="form-control"
+                        value={producto.nombre}
+                        onChange={(e) =&gt;
+                          setListaProductos((prev) =&gt;
+                            prev.map((p) =&gt;
+                              p.id === producto.id
+                                ? { ...p, nombre: e.target.value }
+                                : <span class="branch-1 cbranch-no" title="branch not covered" >p</span>
+                            )
+                          )
+                        }
+                      /&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                      &lt;input
+                        type="text"
+                        className="form-control"
+                        value={producto.precio}
+                        onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt;
+<span class="cstat-no" title="statement not covered" >                          setListaProductos(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >                            prev.map(<span class="fstat-no" title="function not covered" >(p</span>) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >                              p.id === producto.id</span>
+                                ? { ...p, precio: e.target.value }
+                                : p
+                            )
+                          )
+                        }
+                      /&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                      &lt;input
+                        type="text"
+                        className="form-control"
+                        value={producto.imagen}
+                        onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt;
+<span class="cstat-no" title="statement not covered" >                          setListaProductos(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >                            prev.map(<span class="fstat-no" title="function not covered" >(p</span>) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >                              p.id === producto.id</span>
+                                ? { ...p, imagen: e.target.value }
+                                : p
+                            )
+                          )
+                        }
+                      /&gt;
+                      {producto.imagen &amp;&amp; (
+                        &lt;img
+                          src={producto.imagen}
+                          alt={producto.nombre}
+                          className="ad-prod-img"
+                        /&gt;
+                      )}
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                      &lt;input
+                        type="text"
+                        className="form-control"
+                        value={producto.descripcion}
+                        onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt;
+<span class="cstat-no" title="statement not covered" >                          setListaProductos(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >                            prev.map(<span class="fstat-no" title="function not covered" >(p</span>) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >                              p.id === producto.id</span>
+                                ? { ...p, descripcion: e.target.value }
+                                : p
+                            )
+                          )
+                        }
+                      /&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                      &lt;button
+                        className="ad-prod-btn green"
+                        onClick={() =&gt;
+                          handleGuardarEdicion(producto.id, producto)
+                        }
+                      &gt;
+                        Guardar
+                      &lt;/button&gt;
+                      &lt;button
+                        className="ad-prod-btn gray"
+                        onClick={handleCancelar}
+                      &gt;
+                        Cancelar
+                      &lt;/button&gt;
+                    &lt;/td&gt;
+                  &lt;/tr&gt;
+                ) : (
+                  &lt;tr key={producto.id}&gt;
+                    &lt;td&gt;{producto.id}&lt;/td&gt;
+                    &lt;td&gt;{producto.nombre}&lt;/td&gt;
+                    &lt;td&gt;${Number(producto.precio).toLocaleString()}&lt;/td&gt;
+                    &lt;td&gt;
+                      &lt;img
+                        src={producto.imagen}
+                        alt={producto.nombre}
+                        className="ad-prod-img"
+                      /&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;{producto.descripcion}&lt;/td&gt;
+                    &lt;td&gt;
+                      &lt;button
+                        className="ad-prod-btn blue"
+                        onClick={() =&gt; handleEditar(producto.id)}
+                      &gt;
+                        Editar
+                      &lt;/button&gt;
+                      &lt;button
+                        className="ad-prod-btn red"
+                        onClick={() =&gt; handleEliminar(producto.id)}
+                      &gt;
+                        Eliminar
+                      &lt;/button&gt;
+                    &lt;/td&gt;
+                  &lt;/tr&gt;
+                )
+              )}
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+        &lt;/div&gt;
+&nbsp;
+        &lt;button className="ad-prod-btn green" onClick={handleAgregar}&gt;
+          Agregar Producto
+        &lt;/button&gt;
+      &lt;/section&gt;
     &lt;/main&gt;
   );
 }
@@ -1078,7 +1087,7 @@ export default function AdminProductos() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-03T01:23:32.023Z
+                at 2025-11-03T21:12:53.663Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
