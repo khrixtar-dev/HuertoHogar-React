@@ -1,13 +1,6 @@
 import Swal from "sweetalert2";
 
-/**
- * Valida los campos del formulario de contacto.
- *
- * @param {string} nombre - Nombre del usuario que envía el mensaje.
- * @param {string} correo - Correo electrónico del remitente (duoc, profesor.duoc, gmail).
- * @param {string} mensaje - Contenido del mensaje.
- * @returns {boolean} true si todas las validaciones son correctas.
- */
+
 export function validarContacto(nombre, correo, mensaje) {
   const errores = [];
 
@@ -45,7 +38,7 @@ export function validarContacto(nombre, correo, mensaje) {
     return false;
   }
 
-  // === Éxito ===
+  // === Exito ===
   Swal.fire({
     icon: "success",
     title: "Mensaje enviado",

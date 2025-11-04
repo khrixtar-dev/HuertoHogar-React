@@ -18,7 +18,7 @@ export default function LoginAdmin() {
   const submitCredenciales = (e) => {
     e.preventDefault();
 
-    // ✅ 1. Validar formato (correo / contraseña)
+    // 1. Validar formato (correo / contraseña)
     const errores = validarLogin(correo, contraseña);
     if (errores.length > 0) {
       Swal.fire({
@@ -33,12 +33,12 @@ export default function LoginAdmin() {
       return;
     }
 
-    // ✅ 2. Buscar usuario
+    // 2. Buscar usuario
     const usuario = usuarios.find(
       (u) => u.correo === correo && u.contraseña === contraseña
     );
 
-    // ✅ 3. Validar existencia del usuario antes de permisos
+    // 3. Validar existencia del usuario antes de permisos
     if (!usuario) {
       Swal.fire({
         icon: "error",
@@ -52,7 +52,7 @@ export default function LoginAdmin() {
       return;
     }
 
-    // ✅ 4. Validar permisos (solo administradores pueden ingresar)
+    // 4. Validar permisos (solo administradores pueden ingresar)
     const permisoError = validarPermisos(usuario, "admin");
     if (permisoError) {
       Swal.fire({
@@ -67,11 +67,11 @@ export default function LoginAdmin() {
       return;
     }
 
-    // ✅ 5. Guardar sesión en localStorage
+    // 5. Guardar sesión en localStorage
     localStorage.setItem("cuentaIniciada", "true");
     localStorage.setItem("usuarioActual", JSON.stringify(usuario));
 
-    // ✅ 6. Mensaje de éxito y redirección
+    // 6. Mensaje de éxito y redirección
     Swal.fire({
       icon: "success",
       title: `Bienvenido, ${usuario.nombre}!`,

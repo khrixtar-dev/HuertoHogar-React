@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { PRODUCTOS, getCategorias } from '../../public/js/productos_catalogo';
 import { agregarAlCarrito } from '../../public/js/carrito';

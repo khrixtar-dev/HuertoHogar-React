@@ -9,16 +9,13 @@ export default function AdminUsuarios() {
 
   const emailRegex = /^[\w._%+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/;
 
-  // 🧠 Cargar usuarios desde localStorage o desde usuarios.js
+  // Cargar usuarios al inicio
   useEffect(() => {
     try {
       const data = JSON.parse(localStorage.getItem("listaUsuarios"));
-
       if (Array.isArray(data) && data.length > 0) {
-        console.log("🟢 Usuarios cargados desde localStorage:", data);
         setListaUsuarios(data);
       } else {
-        console.log("📦 Cargando usuarios base desde usuarios.js");
         setListaUsuarios(USUARIOS_BASE);
         localStorage.setItem("listaUsuarios", JSON.stringify(USUARIOS_BASE));
       }
@@ -29,7 +26,7 @@ export default function AdminUsuarios() {
     }
   }, []);
 
-  // 💾 Guardar en localStorage cada vez que cambia la lista
+  // Guardar cambios en localStorage
   useEffect(() => {
     if (listaUsuarios.length > 0) {
       localStorage.setItem("listaUsuarios", JSON.stringify(listaUsuarios));
@@ -37,7 +34,7 @@ export default function AdminUsuarios() {
     }
   }, [listaUsuarios]);
 
-  // ➕ Agregar nuevo usuario
+  // Agregar usuario
   const handleAgregar = () => {
     setNuevoUsuario({
       id: "",
@@ -49,6 +46,7 @@ export default function AdminUsuarios() {
     });
   };
 
+  // Guardar nuevo usuario
   const handleGuardarNuevo = () => {
     const u = {
       ...nuevoUsuario,
@@ -59,7 +57,6 @@ export default function AdminUsuarios() {
       contraseña: nuevoUsuario.contraseña.trim(),
     };
 
-    // VALIDACIONES
     if (!u.id || !u.nombre || !u.apellido || !u.correo || !u.contraseña) {
       alert("Todos los campos son obligatorios");
       return;
@@ -77,21 +74,15 @@ export default function AdminUsuarios() {
       return;
     }
 
-    const nuevo = {
-      ...u,
-      id: Number.isNaN(Number(u.id)) ? u.id : Number(u.id),
-    };
-
-    setListaUsuarios((prev) => [...prev, nuevo]);
+    setListaUsuarios((prev) => [...prev, u]);
     setNuevoUsuario(null);
   };
 
-  // ✏️ Editar usuario
+  // Editar usuario
   const handleEditar = (id) => setEditandoId(id);
 
-  // 💾 Guardar edición (con validación)
+  // Guardar edición
   const handleGuardarEdicion = (id) => {
-    // Tomamos el usuario ya editado desde el estado
     const usuarioEditado = listaUsuarios.find((u) => u.id === id);
     if (!usuarioEditado) return;
 
@@ -103,7 +94,6 @@ export default function AdminUsuarios() {
       contraseña: usuarioEditado.contraseña?.trim() || "",
     };
 
-    // VALIDACIONES EN EDICIÓN
     if (!u.nombre || !u.apellido || !u.correo || !u.contraseña) {
       alert("Todos los campos son obligatorios");
       return;
@@ -116,269 +106,259 @@ export default function AdminUsuarios() {
       return;
     }
 
-    // Si pasa las validaciones, actualizamos
     setListaUsuarios((prev) => prev.map((user) => (user.id === id ? u : user)));
     setEditandoId(null);
   };
 
-  // ❌ Eliminar usuario
+  // Eliminar usuario
   const handleEliminar = (id) => {
     if (window.confirm("¿Eliminar este usuario?")) {
       setListaUsuarios((prev) => prev.filter((u) => u.id !== id));
     }
   };
 
-  // 🔙 Cancelar
+  // Cancelar acción
   const handleCancelar = () => {
     setEditandoId(null);
     setNuevoUsuario(null);
   };
 
   return (
-    <main className="admin-container">
-      <h2>Gestión de Usuarios</h2>
+    <main className="ad-usr-page">
+      <section className="ad-usr-container">
+        <h2>Gestión de Usuarios</h2>
 
-      <div className="table-responsive">
-        <table className="table table-striped table-hover" id="tablaUsuarios">
-          <thead className="table-dark">
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Correo</th>
-              <th>Contraseña</th>
-              <th>Admin</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* ➕ Nuevo usuario */}
-            {nuevoUsuario && (
-              <tr className="new-user">
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={nuevoUsuario.id}
-                    onChange={(e) =>
-                      setNuevoUsuario({ ...nuevoUsuario, id: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={nuevoUsuario.nombre}
-                    onChange={(e) =>
-                      setNuevoUsuario({
-                        ...nuevoUsuario,
-                        nombre: e.target.value,
-                      })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={nuevoUsuario.apellido}
-                    onChange={(e) =>
-                      setNuevoUsuario({
-                        ...nuevoUsuario,
-                        apellido: e.target.value,
-                      })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="email"
-                    className="form-control"
-                    value={nuevoUsuario.correo}
-                    onChange={(e) =>
-                      setNuevoUsuario({
-                        ...nuevoUsuario,
-                        correo: e.target.value,
-                      })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={nuevoUsuario.contraseña}
-                    onChange={(e) =>
-                      setNuevoUsuario({
-                        ...nuevoUsuario,
-                        contraseña: e.target.value,
-                      })
-                    }
-                  />
-                </td>
-                <td className="text-center">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    checked={nuevoUsuario.admin}
-                    onChange={(e) =>
-                      setNuevoUsuario({
-                        ...nuevoUsuario,
-                        admin: e.target.checked,
-                      })
-                    }
-                  />
-                </td>
-                <td>
-                  <button
-                    className="btn btn-sm btn-success mb-1"
-                    onClick={handleGuardarNuevo}
-                  >
-                    Guardar
-                  </button>
-                  <button
-                    className="btn btn-sm btn-secondary mb-1"
-                    onClick={handleCancelar}
-                  >
-                    Cancelar
-                  </button>
-                </td>
+        <div className="table-responsive">
+          <table className="ad-usr-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Contraseña</th>
+                <th>Admin</th>
+                <th>Acciones</th>
               </tr>
-            )}
-
-            {/* 🟡 Usuarios existentes */}
-            {listaUsuarios.map((usuario) =>
-              editandoId === usuario.id ? (
-                <tr key={usuario.id}>
-                  <td>{usuario.id}</td>
+            </thead>
+            <tbody>
+              {/* Nuevo usuario */}
+              {nuevoUsuario && (
+                <tr className="ad-usr-new">
                   <td>
                     <input
                       type="text"
-                      className="form-control"
-                      value={usuario.nombre}
+                      value={nuevoUsuario.id}
                       onChange={(e) =>
-                        setListaUsuarios((prev) =>
-                          prev.map((u) =>
-                            u.id === usuario.id
-                              ? { ...u, nombre: e.target.value }
-                              : u
-                          )
-                        )
+                        setNuevoUsuario({ ...nuevoUsuario, id: e.target.value })
                       }
                     />
                   </td>
                   <td>
                     <input
                       type="text"
-                      className="form-control"
-                      value={usuario.apellido}
+                      value={nuevoUsuario.nombre}
                       onChange={(e) =>
-                        setListaUsuarios((prev) =>
-                          prev.map((u) =>
-                            u.id === usuario.id
-                              ? { ...u, apellido: e.target.value }
-                              : u
-                          )
-                        )
-                      }
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="email"
-                      className="form-control"
-                      value={usuario.correo}
-                      onChange={(e) =>
-                        setListaUsuarios((prev) =>
-                          prev.map((u) =>
-                            u.id === usuario.id
-                              ? { ...u, correo: e.target.value }
-                              : u
-                          )
-                        )
+                        setNuevoUsuario({
+                          ...nuevoUsuario,
+                          nombre: e.target.value,
+                        })
                       }
                     />
                   </td>
                   <td>
                     <input
                       type="text"
-                      className="form-control"
-                      value={usuario.contraseña}
+                      value={nuevoUsuario.apellido}
                       onChange={(e) =>
-                        setListaUsuarios((prev) =>
-                          prev.map((u) =>
-                            u.id === usuario.id
-                              ? { ...u, contraseña: e.target.value }
-                              : u
-                          )
-                        )
+                        setNuevoUsuario({
+                          ...nuevoUsuario,
+                          apellido: e.target.value,
+                        })
                       }
                     />
                   </td>
-                  <td className="text-center">
+                  <td>
+                    <input
+                      type="text"
+                      value={nuevoUsuario.correo}
+                      onChange={(e) =>
+                        setNuevoUsuario({
+                          ...nuevoUsuario,
+                          correo: e.target.value,
+                        })
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={nuevoUsuario.contraseña}
+                      onChange={(e) =>
+                        setNuevoUsuario({
+                          ...nuevoUsuario,
+                          contraseña: e.target.value,
+                        })
+                      }
+                    />
+                  </td>
+                  <td>
                     <input
                       type="checkbox"
-                      className="form-check-input"
-                      checked={usuario.admin}
+                      checked={nuevoUsuario.admin}
                       onChange={(e) =>
-                        setListaUsuarios((prev) =>
-                          prev.map((u) =>
-                            u.id === usuario.id
-                              ? { ...u, admin: e.target.checked }
-                              : u
-                          )
-                        )
+                        setNuevoUsuario({
+                          ...nuevoUsuario,
+                          admin: e.target.checked,
+                        })
                       }
                     />
                   </td>
                   <td>
                     <button
-                      className="btn btn-sm btn-success mb-1"
-                      onClick={() => handleGuardarEdicion(usuario.id)}
+                      className="ad-usr-btn blue"
+                      onClick={handleGuardarNuevo}
                     >
                       Guardar
                     </button>
                     <button
-                      className="btn btn-sm btn-secondary mb-1"
+                      className="ad-usr-btn gray"
                       onClick={handleCancelar}
                     >
                       Cancelar
                     </button>
                   </td>
                 </tr>
-              ) : (
-                <tr key={usuario.id}>
-                  <td>{usuario.id}</td>
-                  <td>{usuario.nombre}</td>
-                  <td>{usuario.apellido}</td>
-                  <td>{usuario.correo}</td>
-                  <td>{usuario.contraseña}</td>
-                  <td>{usuario.admin ? "Sí" : "No"}</td>
-                  <td className="table-actions">
-                    <button
-                      className="btn btn-sm btn-primary mb-1"
-                      onClick={() => handleEditar(usuario.id)}
-                    >
-                      Editar
-                    </button>
-                    <button
-                      className="btn btn-sm btn-danger mb-1"
-                      onClick={() => handleEliminar(usuario.id)}
-                    >
-                      Eliminar
-                    </button>
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
-      </div>
+              )}
 
-      <button className="btn btn-success mt-3" onClick={handleAgregar}>
-        Agregar Usuario
-      </button>
+              {/* Lista de usuarios */}
+              {listaUsuarios.map((usuario) =>
+                editandoId === usuario.id ? (
+                  <tr key={usuario.id}>
+                    <td>{usuario.id}</td>
+                    <td>
+                      <input
+                        type="text"
+                        value={usuario.nombre}
+                        onChange={(e) =>
+                          setListaUsuarios((prev) =>
+                            prev.map((u) =>
+                              u.id === usuario.id
+                                ? { ...u, nombre: e.target.value }
+                                : u
+                            )
+                          )
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={usuario.apellido}
+                        onChange={(e) =>
+                          setListaUsuarios((prev) =>
+                            prev.map((u) =>
+                              u.id === usuario.id
+                                ? { ...u, apellido: e.target.value }
+                                : u
+                            )
+                          )
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={usuario.correo}
+                        onChange={(e) =>
+                          setListaUsuarios((prev) =>
+                            prev.map((u) =>
+                              u.id === usuario.id
+                                ? { ...u, correo: e.target.value }
+                                : u
+                            )
+                          )
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={usuario.contraseña}
+                        onChange={(e) =>
+                          setListaUsuarios((prev) =>
+                            prev.map((u) =>
+                              u.id === usuario.id
+                                ? { ...u, contraseña: e.target.value }
+                                : u
+                            )
+                          )
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={usuario.admin}
+                        onChange={(e) =>
+                          setListaUsuarios((prev) =>
+                            prev.map((u) =>
+                              u.id === usuario.id
+                                ? { ...u, admin: e.target.checked }
+                                : u
+                            )
+                          )
+                        }
+                      />
+                    </td>
+                    <td>
+                      <button
+                        className="ad-usr-btn blue"
+                        onClick={() => handleGuardarEdicion(usuario.id)}
+                      >
+                        Guardar
+                      </button>
+                      <button
+                        className="ad-usr-btn gray"
+                        onClick={handleCancelar}
+                      >
+                        Cancelar
+                      </button>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr key={usuario.id}>
+                    <td>{usuario.id}</td>
+                    <td>{usuario.nombre}</td>
+                    <td>{usuario.apellido}</td>
+                    <td>{usuario.correo}</td>
+                    <td>{usuario.contraseña}</td>
+                    <td>{usuario.admin ? "Sí" : "No"}</td>
+                    <td>
+                      <button
+                        className="ad-usr-btn blue"
+                        onClick={() => handleEditar(usuario.id)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        className="ad-usr-btn red"
+                        onClick={() => handleEliminar(usuario.id)}
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        <button className="ad-usr-btn green" onClick={handleAgregar}>
+          Agregar Usuario
+        </button>
+      </section>
     </main>
   );
 }

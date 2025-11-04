@@ -4,12 +4,12 @@
   overflow: hidden;
 }
 
-/* Lado derecho: blanco limpio */
+/* Lado derecho */
 .login-right-admin {
   background-color: #f6f5f2;
 }
 
-/* Lado izquierdo: degradado natural Huerto Hogar */
+/* Lado izquierdo */
 .login-left-admin {
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url("/img/admin_/bg_login.jpg") no-repeat center center;
@@ -17,17 +17,6 @@
   color: #fff;
 }
 
-/* Lado izquierdo: degradado natural Huerto Hogar
-
-
-.login-right {
-  background: linear-gradient(135deg, #a8e6cf 0%, #65b968 100%);
-  color: #fff;
-}
-
-*/
-
-/* Botón estilo Huerto Hogar */
 .btn-green {
   background-color: #65b968;
   border: none;
@@ -40,7 +29,6 @@
   background-color: #4d944f;
 }
 
-/* Alineación del texto */
 .login-left-admin h3 {
   font-size: 1.8rem;
 }
@@ -51,7 +39,7 @@
 }
 
 .logo-box {
-  background-color: #198754; /* verde claro */
+  background-color: #198754; 
   border-radius: 12px;
   padding: 1rem;
   width: 150px;

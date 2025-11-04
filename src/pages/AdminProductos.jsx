@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PRODUCTOS } from "../../public/js/productos_catalogo";
 import "../css/admin-productos.css";
 
@@ -28,11 +27,14 @@ export default function AdminProductos() {
   useEffect(() => {
     if (listaProductos.length > 0) {
       localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
-      console.log("💾 Guardado en localStorage:", listaProductos.length);
+      console.log("Guardado en localStorage:", listaProductos.length);
+
+      // Disparar evento para notificar cambios 
+      window.dispatchEvent(new Event('productosActualizados'));
     }
   }, [listaProductos]);
 
-  // ➕ Agregar nuevo producto
+  // Agregar nuevo producto
   const handleAgregar = () => {
     setNuevoProducto({
       id: "",
@@ -70,10 +72,10 @@ export default function AdminProductos() {
     setNuevoProducto(null);
   };
 
-  // ✏️ Editar producto
+  // Editar producto
   const handleEditar = (id) => setEditandoId(id);
 
-  // 💾 Guardar edición
+  // Guardar edición
   const handleGuardarEdicion = (id, camposActualizados) => {
     setListaProductos((prev) =>
       prev.map((p) => (p.id === id ? { ...p, ...camposActualizados } : p))
@@ -81,7 +83,7 @@ export default function AdminProductos() {
     setEditandoId(null);
   };
 
-  // ❌ Eliminar producto
+  //  Eliminar producto
   const handleEliminar = (id) => {
     if (window.confirm("¿Eliminar este producto?")) {
       setListaProductos((prev) => prev.filter((p) => p.id !== id));
@@ -94,146 +96,33 @@ export default function AdminProductos() {
   };
 
   return (
-    <main className="admin-container">
-      <h2>Gestión de Productos</h2>
+    <main className="ad-prod-page">
+      <section className="ad-prod-container">
+        <h2>Gestión de Productos</h2>
 
-      <div className="table-responsive">
-        <table className="table table-striped table-hover" id="tablaProductos">
-          <thead className="table-dark">
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Imagen</th>
-              <th>Descripción</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Nuevo producto */}
-            {nuevoProducto && (
-              <tr className="new-product">
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.id}
-                    onChange={(e) =>
-                      setNuevoProducto({ ...nuevoProducto, id: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.nombre}
-                    onChange={(e) =>
-                      setNuevoProducto({
-                        ...nuevoProducto,
-                        nombre: e.target.value,
-                      })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.precio}
-                    onChange={(e) =>
-                      setNuevoProducto({
-                        ...nuevoProducto,
-                        precio: e.target.value,
-                      })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.imagen}
-                    placeholder="/img/productos_/nombre.png o URL externa"
-                    onChange={(e) =>
-                      setNuevoProducto({
-                        ...nuevoProducto,
-                        imagen: e.target.value,
-                      })
-                    }
-                  />
-                  {nuevoProducto.imagen && (
-                    <img
-                      src={nuevoProducto.imagen}
-                      alt="Preview"
-                      style={{ width: "60px", marginTop: "5px" }}
-                    />
-                  )}
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={nuevoProducto.descripcion}
-                    onChange={(e) =>
-                      setNuevoProducto({
-                        ...nuevoProducto,
-                        descripcion: e.target.value,
-                      })
-                    }
-                  />
-                </td>
-                <td>
-                  <button
-                    className="btn btn-sm btn-success mb-1"
-                    onClick={handleGuardarNuevo}
-                  >
-                    Guardar
-                  </button>
-                  <button
-                    className="btn btn-sm btn-secondary mb-1"
-                    onClick={handleCancelar}
-                  >
-                    Cancelar
-                  </button>
-                </td>
+        <div className="ad-prod-table-wrapper">
+          <table className="ad-prod-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
               </tr>
-            )}
-
-            {/* Productos existentes */}
-            {listaProductos.map((producto) =>
-              editandoId === producto.id ? (
-                <tr key={producto.id}>
-                  <td>{producto.id}</td>
+            </thead>
+            <tbody>
+              {/*  Nuevo producto */}
+              {nuevoProducto && (
+                <tr className="ad-prod-row-new">
                   <td>
                     <input
                       type="text"
                       className="form-control"
-                      value={producto.nombre}
+                      value={nuevoProducto.id}
                       onChange={(e) =>
-                        setListaProductos((prev) =>
-                          prev.map((p) =>
-                            p.id === producto.id
-                              ? { ...p, nombre: e.target.value }
-                              : p
-                          )
-                        )
-                      }
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      className="form-control"
-                      value={producto.precio}
-                      onChange={(e) =>
-                        setListaProductos((prev) =>
-                          prev.map((p) =>
-                            p.id === producto.id
-                              ? { ...p, precio: Number(e.target.value) }
-                              : p
-                          )
-                        )
+                        setNuevoProducto({ ...nuevoProducto, id: e.target.value, })
                       }
                     />
                   </td>
@@ -241,22 +130,37 @@ export default function AdminProductos() {
                     <input
                       type="text"
                       className="form-control"
-                      value={producto.imagen}
+                      value={nuevoProducto.nombre}
                       onChange={(e) =>
-                        setListaProductos((prev) =>
-                          prev.map((p) =>
-                            p.id === producto.id
-                              ? { ...p, imagen: e.target.value }
-                              : p
-                          )
-                        )
+                        setNuevoProducto({ ...nuevoProducto, nombre: e.target.value, })
                       }
                     />
-                    {producto.imagen && (
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={nuevoProducto.precio}
+                      onChange={(e) =>
+                        setNuevoProducto({ ...nuevoProducto, precio: e.target.value, })
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="/img/productos_/nombre.png o URL"
+                      value={nuevoProducto.imagen}
+                      onChange={(e) =>
+                        setNuevoProducto({ ...nuevoProducto, imagen: e.target.value, })
+                      }
+                    />
+                    {nuevoProducto.imagen && (
                       <img
-                        src={producto.imagen}
-                        alt={producto.nombre}
-                        style={{ width: "60px", marginTop: "5px" }}
+                        src={nuevoProducto.imagen}
+                        alt="Preview"
+                        className="ad-prod-img"
                       />
                     )}
                   </td>
@@ -264,73 +168,160 @@ export default function AdminProductos() {
                     <input
                       type="text"
                       className="form-control"
-                      value={producto.descripcion}
+                      value={nuevoProducto.descripcion}
                       onChange={(e) =>
-                        setListaProductos((prev) =>
-                          prev.map((p) =>
-                            p.id === producto.id
-                              ? { ...p, descripcion: e.target.value }
-                              : p
-                          )
-                        )
+                        setNuevoProducto({ ...nuevoProducto, descripcion: e.target.value, })
                       }
                     />
                   </td>
                   <td>
                     <button
-                      className="btn btn-sm btn-success mb-1"
-                      onClick={() =>
-                        handleGuardarEdicion(producto.id, producto)
-                      }
+                      className="ad-prod-btn green"
+                      onClick={handleGuardarNuevo}
                     >
                       Guardar
                     </button>
                     <button
-                      className="btn btn-sm btn-secondary mb-1"
+                      className="ad-prod-btn gray"
                       onClick={handleCancelar}
                     >
                       Cancelar
                     </button>
                   </td>
                 </tr>
-              ) : (
-                <tr key={producto.id}>
-                  <td>{producto.id}</td>
-                  <td>{producto.nombre}</td>
-                  <td>${producto.precio.toLocaleString()}</td>
-                  <td>
-                    <img
-                      src={producto.imagen}
-                      alt={producto.nombre}
-                      className="img-thumbnail"
-                      style={{ width: "80px" }}
-                    />
-                  </td>
-                  <td>{producto.descripcion}</td>
-                  <td>
-                    <button
-                      className="btn btn-sm btn-primary mb-1"
-                      onClick={() => handleEditar(producto.id)}
-                    >
-                      Editar
-                    </button>
-                    <button
-                      className="btn btn-sm btn-danger mb-1"
-                      onClick={() => handleEliminar(producto.id)}
-                    >
-                      Eliminar
-                    </button>
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
-      </div>
+              )}
 
-      <button className="btn btn-success mt-3" onClick={handleAgregar}>
-        Agregar Producto
-      </button>
+              {/* 🟠 Productos existentes */}
+              {listaProductos.map((producto) =>
+                editandoId === producto.id ? (
+                  <tr key={producto.id}>
+                    <td>{producto.id}</td>
+                    <td>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={producto.nombre}
+                        onChange={(e) =>
+                          setListaProductos((prev) =>
+                            prev.map((p) =>
+                              p.id === producto.id
+                                ? { ...p, nombre: e.target.value }
+                                : p
+                            )
+                          )
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={producto.precio}
+                        onChange={(e) =>
+                          setListaProductos((prev) =>
+                            prev.map((p) =>
+                              p.id === producto.id
+                                ? { ...p, precio: e.target.value }
+                                : p
+                            )
+                          )
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={producto.imagen}
+                        onChange={(e) =>
+                          setListaProductos((prev) =>
+                            prev.map((p) =>
+                              p.id === producto.id
+                                ? { ...p, imagen: e.target.value }
+                                : p
+                            )
+                          )
+                        }
+                      />
+                      {producto.imagen && (
+                        <img
+                          src={producto.imagen}
+                          alt={producto.nombre}
+                          className="ad-prod-img"
+                        />
+                      )}
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={producto.descripcion}
+                        onChange={(e) =>
+                          setListaProductos((prev) =>
+                            prev.map((p) =>
+                              p.id === producto.id
+                                ? { ...p, descripcion: e.target.value }
+                                : p
+                            )
+                          )
+                        }
+                      />
+                    </td>
+                    <td>
+                      <button
+                        className="ad-prod-btn green"
+                        onClick={() =>
+                          handleGuardarEdicion(producto.id, producto)
+                        }
+                      >
+                        Guardar
+                      </button>
+                      <button
+                        className="ad-prod-btn gray"
+                        onClick={handleCancelar}
+                      >
+                        Cancelar
+                      </button>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr key={producto.id}>
+                    <td>{producto.id}</td>
+                    <td>{producto.nombre}</td>
+                    <td>${Number(producto.precio).toLocaleString()}</td>
+                    <td>
+                      <img
+                        src={producto.imagen}
+                        alt={producto.nombre}
+                        className="ad-prod-img"
+                      />
+                    </td>
+                    <td>{producto.descripcion}</td>
+                    <td>
+                      <button
+                        className="ad-prod-btn blue"
+                        onClick={() => handleEditar(producto.id)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        className="ad-prod-btn red"
+                        onClick={() => handleEliminar(producto.id)}
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        <button className="ad-prod-btn green" onClick={handleAgregar}>
+          Agregar Producto
+        </button>
+      </section>
     </main>
   );
 }
