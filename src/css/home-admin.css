@@ -1,0 +1,30 @@
+.home-admin-page {
+  background-color: #2b2b2b;
+  min-height: calc(100vh - 100px);
+}
+
+.home-admin-page h2 {
+  color: white !important;
+}
+
+.home-admin-page p {
+  color: white !important;
+}
+
+.home-admin-page .card {
+  background-color: #6c757d;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.home-admin-page .card:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.home-admin-page .card-title {
+  color: white !important;
+}
+
+.home-admin-page .card-text {
+  color: white !important;
+}

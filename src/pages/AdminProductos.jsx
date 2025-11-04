@@ -18,7 +18,7 @@ export default function AdminProductos() {
         localStorage.setItem("listaProductos", JSON.stringify(PRODUCTOS));
       }
     } catch (err) {
-      console.error("❌ Error cargando productos:", err);
+      console.error("Error cargando productos:", err);
       setListaProductos(PRODUCTOS);
     }
   }, []);
@@ -191,7 +191,7 @@ export default function AdminProductos() {
                 </tr>
               )}
 
-              {/* 🟠 Productos existentes */}
+              {/* Productos existentes */}
               {listaProductos.map((producto) =>
                 editandoId === producto.id ? (
                   <tr key={producto.id}>
