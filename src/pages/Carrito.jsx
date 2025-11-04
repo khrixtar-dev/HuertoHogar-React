@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
 import { PRODUCTOS } from '../../public/js/productos_catalogo';
 import { obtenerCarrito, agregarAlCarrito, quitarDelCarrito, eliminarDelCarrito } from '../../public/js/carrito';
 import '../css/carrito.css';
+import { Link } from 'react-router-dom';
 
 function Carrito() {
   const [carrito, setCarrito] = useState([]);
@@ -64,7 +65,7 @@ function Carrito() {
             <p className="text-white">
               Puedes agregar productos desde nuestra tienda
             </p>
-            <Button variant="success" href="/tienda">
+            <Button variant="success" as={Link} to={'/tienda'}>
               Ir a la Tienda
             </Button>
           </Col>
