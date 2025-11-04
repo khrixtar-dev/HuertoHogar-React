@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
-import { PRODUCTOS } from '../../public/js/productos_catalogo';
-import { obtenerCarrito, agregarAlCarrito, quitarDelCarrito, eliminarDelCarrito } from '../../public/js/carrito';
-import '../css/carrito.css';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
+import { PRODUCTOS } from "../../public/js/productos_catalogo";
+import {
+  obtenerCarrito,
+  agregarAlCarrito,
+  quitarDelCarrito,
+  eliminarDelCarrito,
+} from "../../public/js/carrito";
+import "../css/carrito.css";
 
 function Carrito() {
   const [carrito, setCarrito] = useState([]);
@@ -16,10 +20,10 @@ function Carrito() {
   const cargarCarrito = () => {
     const carritoItems = obtenerCarrito();
     setCarrito(carritoItems);
-    
-    const productos = carritoItems.map(item => {
+
+    const productos = carritoItems.map((item) => {
       let producto = null;
-      PRODUCTOS.forEach(p => {
+      PRODUCTOS.forEach((p) => {
         if (p.id === item.id) {
           producto = p;
         }
@@ -31,26 +35,31 @@ function Carrito() {
 
   const manejarAgregarProducto = (id) => {
     agregarAlCarrito(id);
-    cargarCarrito(); 
+    cargarCarrito();
   };
 
   const manejarRestarProducto = (id) => {
-    quitarDelCarrito(id); 
-    cargarCarrito(); 
+    quitarDelCarrito(id);
+    cargarCarrito();
   };
 
-  
   const manejarEliminarProducto = (id) => {
-    eliminarDelCarrito(id); 
-    cargarCarrito(); 
+    eliminarDelCarrito(id);
+    cargarCarrito();
   };
 
   const calcularCantidadTotal = () => {
-    return productosCarrito.reduce((total, producto) => total + producto.cantidad, 0);
+    return productosCarrito.reduce(
+      (total, producto) => total + producto.cantidad,
+      0
+    );
   };
 
   const calcularTotal = () => {
-    return productosCarrito.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0);
+    return productosCarrito.reduce(
+      (total, producto) => total + producto.precio * producto.cantidad,
+      0
+    );
   };
 
   // SI EL CARRITO ESTA VACIO
@@ -59,13 +68,11 @@ function Carrito() {
       <Container className="carrito-vacio">
         <Row className="justify-content-center">
           <Col md={6} className="text-center">
-            <h2 className="text-white mb-4">
-              Tu carrito está vacío
-            </h2>
+            <h2 className="text-white mb-4">Tu carrito está vacío</h2>
             <p className="text-white">
               Puedes agregar productos desde nuestra tienda
             </p>
-            <Button variant="success" as={Link} to={'/tienda'}>
+            <Button variant="success" href="/tienda">
               Ir a la Tienda
             </Button>
           </Col>
@@ -77,54 +84,44 @@ function Carrito() {
   // SI EL CARRITO TIENE PRODUCTOS
   return (
     <Container className="carrito-container">
-      <h2 className="text-white mb-4">
-        Mi Carrito
-      </h2>
-      
+      <h2 className="text-white mb-4">Mi Carrito</h2>
+
       <Row>
         <Col lg={8}>
           <Card className="productos-card">
             <Card.Header>
-              <h5>
-                Productos ({calcularCantidadTotal()} items)
-              </h5>
+              <h5>Productos ({calcularCantidadTotal()} items)</h5>
             </Card.Header>
             <Card.Body className="p-0">
-              {productosCarrito.map(producto => (
+              {productosCarrito.map((producto) => (
                 <div key={producto.id} className="producto-item">
                   <Row className="align-items-center">
                     <Col xs={3} md={2}>
-                      <img 
-                        src={producto.imagen} 
+                      <img
+                        src={producto.imagen}
                         alt={producto.nombre}
                         className="producto-imagen"
                       />
                     </Col>
                     <Col xs={9} md={4}>
-                      <h6 className="producto-nombre">
-                        {producto.nombre}
-                      </h6>
-                      <p className="producto-id">
-                        ID: {producto.id}
-                      </p>
+                      <h6 className="producto-nombre">{producto.nombre}</h6>
+                      <p className="producto-id">ID: {producto.id}</p>
                       <p className="producto-precio">
                         ${producto.precio.toLocaleString()} CLP/kg
                       </p>
                     </Col>
                     <Col xs={12} md={3} className="cantidad-controls">
                       <div className="cantidad-wrapper">
-                        <Button 
-                          variant="outline-secondary" 
+                        <Button
+                          variant="outline-secondary"
                           size="sm"
                           onClick={() => manejarRestarProducto(producto.id)}
                         >
                           -
                         </Button>
-                        <span className="cantidad">
-                          {producto.cantidad}
-                        </span>
-                        <Button 
-                          variant="outline-secondary" 
+                        <span className="cantidad">{producto.cantidad}</span>
+                        <Button
+                          variant="outline-secondary"
                           size="sm"
                           onClick={() => manejarAgregarProducto(producto.id)}
                         >
@@ -134,12 +131,13 @@ function Carrito() {
                     </Col>
                     <Col xs={6} md={2}>
                       <p className="subtotal">
-                        ${(producto.precio * producto.cantidad).toLocaleString()}
+                        $
+                        {(producto.precio * producto.cantidad).toLocaleString()}
                       </p>
                     </Col>
                     <Col xs={6} md={1}>
-                      <Button 
-                        variant="outline-danger" 
+                      <Button
+                        variant="outline-danger"
                         size="sm"
                         onClick={() => manejarEliminarProducto(producto.id)}
                       >
@@ -156,51 +154,40 @@ function Carrito() {
         <Col lg={4}>
           <Card className="resumen-card">
             <Card.Header>
-              <h5>
-                Resumen de Compra
-              </h5>
+              <h5>Resumen de Compra</h5>
             </Card.Header>
             <Card.Body>
               <ListGroup variant="flush">
-                {productosCarrito.map(producto => (
+                {productosCarrito.map((producto) => (
                   <ListGroup.Item key={producto.id} className="resumen-item">
                     <div className="d-flex justify-content-between">
                       <span className="producto-resumen">
                         {producto.nombre} x{producto.cantidad}
                       </span>
                       <span>
-                        ${(producto.precio * producto.cantidad).toLocaleString()}
+                        $
+                        {(producto.precio * producto.cantidad).toLocaleString()}
                       </span>
                     </div>
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              
+
               <hr />
-              
+
               <div className="total-section">
                 <div className="d-flex justify-content-between mb-2">
-                  <span>
-                    Subtotal:
-                  </span>
-                  <span>
-                    ${calcularTotal().toLocaleString()}
-                  </span>
+                  <span>Subtotal:</span>
+                  <span>${calcularTotal().toLocaleString()}</span>
                 </div>
                 <div className="d-flex justify-content-between mb-3">
-                  <strong>
-                    Total:
-                  </strong>
+                  <strong>Total:</strong>
                   <strong className="total-precio">
                     ${calcularTotal().toLocaleString()} CLP
                   </strong>
                 </div>
               </div>
-              <Button 
-                variant="success" 
-                size="lg" 
-                className="w-100 btn-pagar"
-              >
+              <Button variant="success" size="lg" className="w-100 btn-pagar">
                 Ir a Pagar
               </Button>
             </Card.Body>
