@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/css/login-clientes.css</title>
+    <title>Code coverage report for css/tienda.css</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/css</a> login-clientes.css</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">css</a> tienda.css</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -106,27 +106,7 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,106 +149,66 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* Pantalla completa */
-.login-fullscreen {
-  height: 100vh;
-  overflow: hidden;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+.product-card {
+  width: 14rem;
+  height: 20rem;
+  background-color: rgba(255, 255, 255, 0.74);
+  text-align: center;
 }
 &nbsp;
-/* Lado izquierdo: blanco limpio */
-.login-left-cliente {
-  background-color:#f6f5f2;
+.product-card .card-img-top {
+  height: 11rem;
+  object-fit: contain;
+  width: 100%;
+  padding: 12px;
 }
 &nbsp;
-/* Lado derecho: degradado natural Huerto Hogar */
-.login-right-cliente {
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url("/img/nosotros_/Fondo.jpg") no-repeat center center;
-  background-size: cover;
-  color: #fff;
-}
-&nbsp;
-/* Lado derecho: degradado natural Huerto Hogar
-&nbsp;
-&nbsp;
-.login-right {
-  background: linear-gradient(135deg, #a8e6cf 0%, #65b968 100%);
-  color: #fff;
-}
-&nbsp;
-*/
-&nbsp;
-/* Botón estilo Huerto Hogar */
-.btn-green {
-  background-color: #65b968;
-  border: none;
-  color: #fff;
-  font-weight: 600;
-  transition: 0.3s;
-}
-&nbsp;
-.btn-green:hover {
-  background-color: #4d944f;
-}
-&nbsp;
-/* Alineación del texto */
-.login-right-cliente h3 {
-  font-size: 1.8rem;
-}
-&nbsp;
-.login-right-cliente p {
-  font-size: 1rem;
-  max-width: 400px;
-}
-&nbsp;
-.logo-box {
-  background-color: #198754; /* verde claro */
-  border-radius: 12px;
-  padding: 1rem;
-  width: 150px;
-  height: 150px;
+.product-card .card-body {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  padding: 0.5rem;  
 }
-&nbsp;</pre></td></tr></table></pre>
+&nbsp;
+.product-card .card-title {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+&nbsp;
+.product-card .card-text {
+  font-weight: bold;
+  color: #198754;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+&nbsp;
+.product-card .btn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.form-select{
+  background-color: #f6f5f2;
+}
+.tienda-title{
+  color: #f6f5f2;
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-03T21:12:53.663Z
+                at 2025-11-04T01:20:22.494Z
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
     </body>
 </html>
     
