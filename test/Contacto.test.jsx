@@ -4,7 +4,7 @@ import { vi } from "vitest";
 import Contacto from "../src/pages/Contacto";
 import { validarContacto } from "../public/js/validacion_contacto";
 
-// 🧩 Mockeamos la función de validación real
+// Mockeamos la función de validación real
 vi.mock("../public/js/validacion_contacto", () => ({
   validarContacto: vi.fn(),
 }));

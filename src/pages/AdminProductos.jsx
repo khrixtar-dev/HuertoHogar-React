@@ -27,11 +27,14 @@ export default function AdminProductos() {
   useEffect(() => {
     if (listaProductos.length > 0) {
       localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
-      console.log("💾 Guardado en localStorage:", listaProductos.length);
+      console.log("Guardado en localStorage:", listaProductos.length);
+
+      // Disparar evento para notificar cambios 
+      window.dispatchEvent(new Event('productosActualizados'));
     }
   }, [listaProductos]);
 
-  // ➕ Agregar nuevo producto
+  // Agregar nuevo producto
   const handleAgregar = () => {
     setNuevoProducto({
       id: "",
@@ -69,10 +72,10 @@ export default function AdminProductos() {
     setNuevoProducto(null);
   };
 
-  // ✏️ Editar producto
+  // Editar producto
   const handleEditar = (id) => setEditandoId(id);
 
-  // 💾 Guardar edición
+  // Guardar edición
   const handleGuardarEdicion = (id, camposActualizados) => {
     setListaProductos((prev) =>
       prev.map((p) => (p.id === id ? { ...p, ...camposActualizados } : p))
@@ -80,7 +83,7 @@ export default function AdminProductos() {
     setEditandoId(null);
   };
 
-  // ❌ Eliminar producto
+  //  Eliminar producto
   const handleEliminar = (id) => {
     if (window.confirm("¿Eliminar este producto?")) {
       setListaProductos((prev) => prev.filter((p) => p.id !== id));
@@ -110,7 +113,7 @@ export default function AdminProductos() {
               </tr>
             </thead>
             <tbody>
-              {/* 🟢 Nuevo producto */}
+              {/*  Nuevo producto */}
               {nuevoProducto && (
                 <tr className="ad-prod-row-new">
                   <td>
@@ -119,10 +122,7 @@ export default function AdminProductos() {
                       className="form-control"
                       value={nuevoProducto.id}
                       onChange={(e) =>
-                        setNuevoProducto({
-                          ...nuevoProducto,
-                          id: e.target.value,
-                        })
+                        setNuevoProducto({ ...nuevoProducto, id: e.target.value, })
                       }
                     />
                   </td>
@@ -132,10 +132,7 @@ export default function AdminProductos() {
                       className="form-control"
                       value={nuevoProducto.nombre}
                       onChange={(e) =>
-                        setNuevoProducto({
-                          ...nuevoProducto,
-                          nombre: e.target.value,
-                        })
+                        setNuevoProducto({ ...nuevoProducto, nombre: e.target.value, })
                       }
                     />
                   </td>
@@ -145,10 +142,7 @@ export default function AdminProductos() {
                       className="form-control"
                       value={nuevoProducto.precio}
                       onChange={(e) =>
-                        setNuevoProducto({
-                          ...nuevoProducto,
-                          precio: e.target.value,
-                        })
+                        setNuevoProducto({ ...nuevoProducto, precio: e.target.value, })
                       }
                     />
                   </td>
@@ -159,10 +153,7 @@ export default function AdminProductos() {
                       placeholder="/img/productos_/nombre.png o URL"
                       value={nuevoProducto.imagen}
                       onChange={(e) =>
-                        setNuevoProducto({
-                          ...nuevoProducto,
-                          imagen: e.target.value,
-                        })
+                        setNuevoProducto({ ...nuevoProducto, imagen: e.target.value, })
                       }
                     />
                     {nuevoProducto.imagen && (
@@ -179,10 +170,7 @@ export default function AdminProductos() {
                       className="form-control"
                       value={nuevoProducto.descripcion}
                       onChange={(e) =>
-                        setNuevoProducto({
-                          ...nuevoProducto,
-                          descripcion: e.target.value,
-                        })
+                        setNuevoProducto({ ...nuevoProducto, descripcion: e.target.value, })
                       }
                     />
                   </td>

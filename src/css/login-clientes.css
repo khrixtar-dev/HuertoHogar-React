@@ -4,12 +4,12 @@
   overflow: hidden;
 }
 
-/* Lado izquierdo: blanco limpio */
+/* Lado izquierdo*/
 .login-left-cliente {
   background-color:#f6f5f2;
 }
 
-/* Lado derecho: degradado natural Huerto Hogar */
+/* Lado derecho */
 .login-right-cliente {
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url("/img/nosotros_/Fondo.jpg") no-repeat center center;
@@ -17,17 +17,7 @@
   color: #fff;
 }
 
-/* Lado derecho: degradado natural Huerto Hogar
 
-
-.login-right {
-  background: linear-gradient(135deg, #a8e6cf 0%, #65b968 100%);
-  color: #fff;
-}
-
-*/
-
-/* Botón estilo Huerto Hogar */
 .btn-green {
   background-color: #65b968;
   border: none;
@@ -40,7 +30,6 @@
   background-color: #4d944f;
 }
 
-/* Alineación del texto */
 .login-right-cliente h3 {
   font-size: 1.8rem;
 }

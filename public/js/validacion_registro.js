@@ -1,15 +1,5 @@
 import Swal from "sweetalert2";
 
-/**
- * Valida los campos del formulario de registro de usuario.
- * @param {string} nombre
- * @param {string} apellido
- * @param {string} correo
- * @param {string} contraseña
- * @param {string} repetirContraseña
- * @param {boolean} aceptaTerminos
- * @returns {boolean} true si todo está correcto
- */
 export function validarRegistro(
   nombre,
   apellido,

@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { vi } from "vitest";
 import AdminProductos from "../src/pages/AdminProductos.jsx";
 
-// 🧩 Mock del catálogo base
+// Mock del catálogo base
 vi.mock("../public/js/productos_catalogo", () => ({
   PRODUCTOS: [
     {
@@ -16,7 +16,7 @@ vi.mock("../public/js/productos_catalogo", () => ({
   ],
 }));
 
-// 🧩 Mock localStorage
+// Mock localStorage
 const mockGetItem = vi.fn();
 const mockSetItem = vi.fn();
 
@@ -28,7 +28,7 @@ beforeEach(() => {
   });
 });
 
-describe("🧪 Componente AdminProductos", () => {
+describe("Componente AdminProductos", () => {
   test("carga productos desde localStorage si existen", async () => {
     mockGetItem.mockReturnValue(
       JSON.stringify([
@@ -174,7 +174,7 @@ describe("🧪 Componente AdminProductos", () => {
 
     await waitFor(() => {
       expect(logSpy).toHaveBeenCalledWith(
-        "💾 Guardado en localStorage:",
+        "Guardado en localStorage:",
         expect.any(Number)
       );
     });
@@ -200,7 +200,7 @@ describe("🧪 Componente AdminProductos", () => {
 
     await waitFor(() => {
       expect(logSpy).toHaveBeenCalledWith(
-        "💾 Guardado en localStorage:",
+        "Guardado en localStorage:",
         expect.any(Number)
       );
     });

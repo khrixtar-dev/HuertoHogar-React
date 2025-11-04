@@ -4,7 +4,6 @@ import { vi } from "vitest";
 import { MemoryRouter, useNavigate } from "react-router-dom";
 import LoginCliente from "../src/pages/LoginClientes.jsx";
 
-// 🧩 MOCKS ------------------------------------------------------------
 
 vi.mock("sweetalert2", () => ({
   __esModule: true,
@@ -38,7 +37,7 @@ import {
 } from "../public/js/validacionesLogin.js";
 import { obtenerUsuarios, setSesion } from "../public/js/persistenciaLogin.js";
 
-// 🧪 TESTS ------------------------------------------------------------
+// TESTS
 
 describe("🧪 Componente LoginCliente", () => {
   beforeEach(() => {
@@ -52,7 +51,7 @@ describe("🧪 Componente LoginCliente", () => {
       </MemoryRouter>
     );
 
-  test("🔴 muestra errores de validación cuando los campos son inválidos", async () => {
+  test("muestra errores de validación cuando los campos son inválidos", async () => {
     validarLogin.mockReturnValue(["Correo inválido", "Contraseña vacía"]);
 
     renderLogin();
@@ -68,7 +67,7 @@ describe("🧪 Componente LoginCliente", () => {
     });
   });
 
-  test("🔴 muestra error cuando el usuario no existe", async () => {
+  test("muestra error cuando el usuario no existe", async () => {
     validarLogin.mockReturnValue([]);
     obtenerUsuarios.mockReturnValue([
       { correo: "otro@mail.com", contraseña: "1234" },
@@ -93,7 +92,7 @@ describe("🧪 Componente LoginCliente", () => {
     });
   });
 
-  test("🟠 muestra advertencia si el usuario no tiene permisos", async () => {
+  test("muestra advertencia si el usuario no tiene permisos", async () => {
     validarLogin.mockReturnValue([]);
     obtenerUsuarios.mockReturnValue([
       { correo: "user@mail.com", contraseña: "1234", rol: "admin" },
@@ -119,7 +118,7 @@ describe("🧪 Componente LoginCliente", () => {
     });
   });
 
-  test("✅ inicia sesión correctamente, guarda sesión y ejecuta navigate + dispatchEvent", async () => {
+  test("inicia sesión correctamente, guarda sesión y ejecuta navigate + dispatchEvent", async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
 
     validarLogin.mockReturnValue([]);

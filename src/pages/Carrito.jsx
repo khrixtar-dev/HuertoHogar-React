@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
 import { PRODUCTOS } from '../../public/js/productos_catalogo';
 import { obtenerCarrito, agregarAlCarrito, quitarDelCarrito, eliminarDelCarrito } from '../../public/js/carrito';

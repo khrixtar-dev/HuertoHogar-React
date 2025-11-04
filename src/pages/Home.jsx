@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import { PRODUCTOS, getProductoRandom } from '../../public/js/productos_catalogo';
+import { getProductos, getProductoRandom } from '../../public/js/productos_catalogo';
 import { agregarAlCarrito } from '../../public/js/carrito';
 import ProductModal from './ProductModal';
 import '../css/home.css';
@@ -45,15 +45,15 @@ function Home() {
     null
   );
 
-  // Productos fijos que no cambian en cada render
+  // Productos aleatorios cargados del localStorage
   const productosAleatorios = useMemo(
-    () => getProductoRandom(PRODUCTOS, 4), 
+    () => getProductoRandom(getProductos(), 4), 
     []
   );
 
   // Función para abrir el modal con el producto seleccionado
   const verProductoModal = (id) => {
-    const producto = PRODUCTOS.find(
+    const producto = getProductos().find(
       p => p.id === id
     );
     setProductoSeleccionado(producto);

@@ -1,7 +1,7 @@
-/* ===== FOOTER (Huerto Hogar React-Bootstrap) ===== */
+/* ===== FOOTER ===== */
 
 .custom-footer {
-  background-color: #5c493b; /* color original */
+  background-color: #5c493b; 
   color: #fff;
   padding: 1rem 0 0.2rem 0;
   width: 100%;
@@ -63,7 +63,7 @@
   }
 }
 
-/* COLORES PARA FOOTER COMO ADMIN */
+/* COLRES PARA FOOTER COMO ADMIN */
 .footer-admin {
   background-color: #484d52 !important;
 }

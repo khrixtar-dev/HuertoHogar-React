@@ -1,4 +1,4 @@
-export const PRODUCTOS = [
+const PRODUCTOS_DEFAULT = [
   { id: "FR001", nombre: "Manzanas Fuji", precio: 1200, imagen: "/img/productos_/manzanas_fuji.png", descripcion: "Manzanas Fuji crujientes y dulces, cultivadas en el Valle del Maule. Perfectas para meriendas saludables o postres.", categoria: "fruta organica", stock: 50 },
   { id: "FR002", nombre: "Naranjas Valencia", precio: 1000, imagen: "/img/productos_/naranjas_valencia.png", descripcion: "Naranjas Valencia jugosas y frescas, ideales para jugos o ensaladas. Ricas en vitamina C.", categoria: "fruta organica", stock: 50 },
   { id: "FR003", nombre: "Plátanos Cavendish", precio: 800, imagen: "/img/productos_/platanos_cavendish.png", descripcion: "Plátanos Cavendish dulces, perfectos para batidos, postres o como snack saludable.", categoria: "fruta organica", stock: 50 },
@@ -33,6 +33,16 @@ export const PRODUCTOS = [
   { id: "PL008", nombre: "Leche de Cabra", precio: 2400, imagen: "/img/productos_/leche_cabra.png", descripcion: "Leche de cabra fresca, más digestible que la leche de vaca, rica en nutrientes.", categoria: "productos lacteos", stock: 50 }
 ];
 
+export function getProductos() {
+  const productosLS = localStorage.getItem('listaProductos');
+    if (productosLS) {
+      return JSON.parse(productosLS);
+    }
+  return PRODUCTOS_DEFAULT;
+}
+
+export const PRODUCTOS = getProductos();
+
 export function getProductoRandom(array, cantidad = 8) {
   const copia = [...array];
   const seleccion = [];
@@ -46,9 +56,10 @@ export function getProductoRandom(array, cantidad = 8) {
 
 export function getProductosByCategoria(categoria) {
   const productos = [];
-  for (let i = 0; i < PRODUCTOS.length; i++) {
-    if (PRODUCTOS[i].categoria === categoria) {
-      productos.push(PRODUCTOS[i]);
+  const productosActuales = getProductos();
+  for (let i = 0; i < productosActuales.length; i++) {
+    if (productosActuales[i].categoria === categoria) {
+      productos.push(productosActuales[i]);
     }
   }
   return productos;
@@ -67,6 +78,7 @@ export function getCategorias() {
 
 export function findProductIdByName(name) {
   if (!name) return null;
-  const prod = PRODUCTOS.find(p => p.nombre.toLowerCase().trim() === name.toLowerCase().trim());
+  const productosActuales = getProductos();
+  const prod = productosActuales.find(p => p.nombre.toLowerCase().trim() === name.toLowerCase().trim());
   return prod ? prod.id : null;
 }

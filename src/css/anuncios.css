@@ -6,7 +6,6 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   padding: 20px 20px 100px 20px;
-  /*background-color: #eeeeee;*/
   background-image: url(/img/anuncios_/textura_diario.webp);
   background-size: cover;
   background-position: 50%;
@@ -44,9 +43,6 @@ body {
 }
 
 .noticia {
-  /*background: #fff;
-  border: 1px solid #ddd;*/
-  
   padding: 1px;
   border-radius: 5px;
   break-inside: avoid;
