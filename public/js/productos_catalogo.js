@@ -35,9 +35,14 @@ const PRODUCTOS_DEFAULT = [
 
 export function getProductos() {
   const productosLS = localStorage.getItem('listaProductos');
-    if (productosLS) {
-      return JSON.parse(productosLS);
+  if (productosLS) {
+    const productos = JSON.parse(productosLS);
+    if (productos.length > 0) {
+      return productos;
     }
+  }
+  // Si no hay productos en localStorage o está vacío, inicializar con productos por defecto
+  localStorage.setItem('listaProductos', JSON.stringify(PRODUCTOS_DEFAULT));
   return PRODUCTOS_DEFAULT;
 }
 
